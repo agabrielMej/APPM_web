@@ -1,43 +1,43 @@
-en este codigo se estara viendo lo siguiente, un ejercicio de html con una gran cantiad de
-index los cuales estaran conectado entre si, ya que estos funcionaran para hacer lo siguiente.
-Se creara una historia la cual el usuario o tester pueda elegir el camino que desee y dependiendo 
-del camino que se escoja se veram distintos caminos, creando asi una historia distinta dependiendo 
-del camino que se escoja 
+Project Description
 
-nuestra historia se tratara de lo sifuiente 
+This project is an HTML exercise composed of multiple interconnected index and HTML files.
+All pages are linked together to create an interactive story experience.
 
-contexto
-un personaje que se llama felipiño el niño (jaja es lo primero que se me ocurrio) esta en un mundo 
-post apocaliptico donde la humanidad se fue hacia abajo y asi desapareciendo la mitad de la poblacion, 
-debido a que hubo una epidemia mundial que fue muy fuerte, ahora las personas que estan intentano 
-sobrevivir tienen que pelear con otras personas por buscar recursos para poder sobrevivir.
+The user (or tester) can choose different paths throughout the story.
+Depending on the decisions made, the story will branch into different scenarios, leading to multiple possible endings.
 
-felipiño el niño esta junto a su hermano mayor que se llama (fausto el hermano mayor)
-ellos dos fueron los unicos sobrevivientes en su familia asi quedando solo ellos dos para poder sobrevivir
-a este intenso mundo donde es igual de peligroso encontrarse a una persona como quedarse sin comida
-debido a que las personas se han peleado demasiado por buscar recursos
+Each choice affects the direction of the narrative, creating a unique experience every time the story is played.
 
-historia
-felipiño el niño y su hermano mayor fausto el hermano mayor han estado viviendo solos desde desde
-que se murio su familia hace 6 meses, nuestros personajes han estado viviendo en un una zona
-tranquila hasta que llegaron ellos, una pandilla que se quiere adueñar de todo el territorio
-posible para poder gobernar todo lo que ellos quieran, esto obliga a nuestros personajes a retirarse
-de esta zona y buscar una nueva casa. aca es donde comienza la historia de nuestros personajes
+Story Context
 
-(cosas que si o si tienen que pasar en esta historia)
-- la muerte de fausto el hermano mayor, exeptuando 1 ocacion, donde la opcion para 
-salvar a fausto el hermano mayor va a haber una opcion que sea hacer un truco de magia
-ahi felipiño el niño le dice a su hermano fausto el hermano mayor, "ey te voy a hacer un truco de magia
-mira en esta mano no tengo nada y en esta otra tampoco" *se acerca a el lentamente*
-y le dice "mira lo que encontre detras de tu oreja" *saca lo que necesite para salvarlo* 
+The story is based on two main characters:
 
-- felipiño el niño encuentra un perro y hay opciones para adoptarlo o no
+Felipiño the Kid
 
-- final feliz, felipiño y su hermano consiguen un nuevo lugar para vivir
-- final feliz, felipiño el niño encuntra un lugar donde vivir pero solo
-- final medio, hay una roptura en el espacio tiempo y se inicia todo desde el inicio
-- final medio, no pasa nada y se acabaron las ideas para conseguir un final jajaja
-- final malo, todos mueren
+Fausto the Older Brother
 
+The world is set in a post-apocalyptic future where humanity has collapsed.
+Half of the population disappeared due to a devastating global epidemic.
 
+The survivors now struggle to stay alive in a dangerous environment where resources are scarce. People fight each other for food, fuel, and safe shelter. In this world, encountering another person can be just as dangerous as starving.
 
+Felipiño and Fausto are the only survivors of their family.
+They have been alone for six months after losing everyone they loved.
+
+They were living in a relatively peaceful area until a violent gang arrived, trying to take control of all surrounding territories. This forces the two brothers to abandon their home and search for a new place to live.
+
+This is where the interactive story begins.
+
+Possible Endings
+
+Depending on the choices made by the user, the story can end in several different ways:
+
+They successfully find a safe place to live and start a new life.
+
+They are killed by a wild bear.
+
+They freeze to death due to extreme cold.
+
+They die after eating a poisonous mushroom.
+
+A mysterious dog appears and sends them back in time, allowing the player to restart the story from the beginning.
