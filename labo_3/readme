@@ -1,0 +1,43 @@
+Project Description
+
+This project is an HTML exercise composed of multiple interconnected index and HTML files.
+All pages are linked together to create an interactive story experience.
+
+The user (or tester) can choose different paths throughout the story.
+Depending on the decisions made, the story will branch into different scenarios, leading to multiple possible endings.
+
+Each choice affects the direction of the narrative, creating a unique experience every time the story is played.
+
+Story Context
+
+The story is based on two main characters:
+
+Felipiño the Kid
+
+Fausto the Older Brother
+
+The world is set in a post-apocalyptic future where humanity has collapsed.
+Half of the population disappeared due to a devastating global epidemic.
+
+The survivors now struggle to stay alive in a dangerous environment where resources are scarce. People fight each other for food, fuel, and safe shelter. In this world, encountering another person can be just as dangerous as starving.
+
+Felipiño and Fausto are the only survivors of their family.
+They have been alone for six months after losing everyone they loved.
+
+They were living in a relatively peaceful area until a violent gang arrived, trying to take control of all surrounding territories. This forces the two brothers to abandon their home and search for a new place to live.
+
+This is where the interactive story begins.
+
+Possible Endings
+
+Depending on the choices made by the user, the story can end in several different ways:
+
+They successfully find a safe place to live and start a new life.
+
+They are killed by a wild bear.
+
+They freeze to death due to extreme cold.
+
+They die after eating a poisonous mushroom.
+
+A mysterious dog appears and sends them back in time, allowing the player to restart the story from the beginning.
