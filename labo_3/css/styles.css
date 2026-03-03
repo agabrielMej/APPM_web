@@ -11,8 +11,9 @@ body {
   color: #e2e8f0;
 
   display: flex;
-  justify-content: center;
+  flex-direction: column;
   align-items: center;
+  padding-top: 40px;
 }
 
 article {
@@ -28,11 +29,10 @@ article {
 }
 
 h1 {
-  position: absolute;
-  top: 40px;
   text-align: center;
-  width: 100%;
   color: #00f5a0;
+  font-size: clamp(2rem, 5vw, 3rem);
+  margin-bottom: 1.5rem;
 }
 
 p {
