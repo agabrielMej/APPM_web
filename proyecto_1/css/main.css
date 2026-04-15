@@ -1,6 +1,59 @@
 body {
     margin: 0;
-    font-family: Arial, sans-serif;
-    background: #111;
+    font-family: 'Segoe UI', sans-serif;
+    background: radial-gradient(circle at top, #1a1a1a, #050505);
     color: white;
+}
+
+/* NAVBAR */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+    background: linear-gradient(90deg, #e10600, #8b0000);
+}
+
+.navbar h1 {
+    margin: 0;
+}
+
+.navbar button {
+    margin-left: 10px;
+}
+
+/* HERO */
+.hero {
+    height: 300px;
+    background: url("https://images.unsplash.com/photo-1603297631955-12d3cbb5c5f4") center/cover no-repeat;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.hero-content {
+    background: rgba(0,0,0,0.6);
+    padding: 20px;
+    border-radius: 10px;
+}
+
+/* FILTRO */
+.filters {
+    padding: 20px;
+    text-align: center;
+}
+
+.filters input {
+    padding: 10px;
+    width: 300px;
+    border-radius: 5px;
+    border: none;
+}
+
+/* GRID */
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+    padding: 20px;
 }

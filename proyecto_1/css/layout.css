@@ -16,3 +16,23 @@
     gap: 15px;
     padding: 20px;
 }
+
+.filters input {
+    padding: 12px;
+    width: 320px;
+    border-radius: 8px;
+    border: 2px solid #e10600;
+    background: #111;
+    color: white;
+    outline: none;
+    transition: 0.3s;
+}
+
+.filters input::placeholder {
+    color: #888;
+}
+
+.filters input:focus {
+    box-shadow: 0 0 10px rgba(225, 6, 0, 0.7);
+    border-color: #ff2a2a;
+}

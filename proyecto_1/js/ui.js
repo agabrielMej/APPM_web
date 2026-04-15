@@ -8,7 +8,7 @@ export const renderPosts = (posts) => {
 
         card.innerHTML = `
             <h3>${post.title}</h3>
-            <p>${post.body.substring(0, 100)}...</p>
+            <p>${traducirTexto(post.body.substring(0, 100))}...</p>
             <button class="detail-btn" data-id="${post.id}">
                 Ver más
             </button>
@@ -37,4 +37,16 @@ export const renderPostDetail = (post) => {
             <button id="back-btn">⬅ Volver</button>
         </div>
     `;
+};
+
+// Traducción simple (simulada)
+const traducirTexto = (texto) => {
+    return texto
+        .replace(/the/gi, "el")
+        .replace(/and/gi, "y")
+        .replace(/is/gi, "es")
+        .replace(/was/gi, "era")
+        .replace(/to/gi, "a")
+        .replace(/of/gi, "de")
+        .replace(/in/gi, "en");
 };

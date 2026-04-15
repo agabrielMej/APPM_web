@@ -12,26 +12,33 @@
 
     <!-- NAVBAR -->
     <header class="navbar">
-        <h1>🏎️ F1 Blog</h1>
-
+        <h1>F1 Blog</h1>
         <nav>
-            <button id="home-btn">Inicio</button>
-            <button id="create-btn">Crear Post</button>
-            <button id="favorites-btn">Favoritos</button>
+            <button>Inicio</button>
+            <button>Crear</button>
+            <button>Favoritos</button>
         </nav>
     </header>
 
-    <!-- FILTROS -->
-    <section class="filters">
-        <input type="text" id="search" placeholder="Buscar post...">
+    <!-- HERO -->
+    <section class="hero">
+        <div class="hero-content">
+            <h2>La emoción de la Fórmula 1</h2>
+            <p>
+                Noticias, análisis y pasión por el automovilismo.
+            </p>
+        </div>
     </section>
 
-    <!-- CONTENEDOR POSTS -->
+    <!-- BUSCADOR -->
+    <section class="filters">
+        <input type="text" id="search" placeholder="Buscar publicación...">
+    </section>
+
+    <!-- POSTS -->
     <main id="posts-container" class="grid"></main>
 
-    <!-- MENSAJES -->
-    <div id="message"></div>
-
     <script type="module" src="./js/main.js"></script>
+
 </body>
 </html>
