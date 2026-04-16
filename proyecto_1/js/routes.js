@@ -10,3 +10,13 @@ export const showDetail = async (id) => {
         renderPosts(posts);
     });
 };
+
+
+export const showHome = async () => {
+    const container = document.getElementById("posts-container");
+
+    container.innerHTML = "";
+
+    const posts = await getPosts();
+    renderPosts(posts);
+};

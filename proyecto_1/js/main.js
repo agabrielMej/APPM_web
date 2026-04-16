@@ -1,6 +1,7 @@
 import { getPosts, getDrivers } from "./api.js";
 import { renderPosts, renderDrivers } from "./ui.js";
 import { showDetail } from "./routes.js";
+import { showHome } from "./routes.js";
 
 let allPosts = [];
 
@@ -21,7 +22,6 @@ const loadDrivers = async () => {
 // INICIALIZAR TODO
 const init = async () => {
     await loadPosts();
-    await loadDrivers();
 };
 
 init();
@@ -45,4 +45,9 @@ document.addEventListener("click", (e) => {
         const id = btn.dataset.id;
         showDetail(id);
     }
+});
+
+
+document.getElementById("home-btn").addEventListener("click", () => {
+    showHome();
 });
