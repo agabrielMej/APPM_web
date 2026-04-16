@@ -1,10 +1,15 @@
 body {
     margin: 0;
     font-family: 'Segoe UI', sans-serif;
-    background: radial-gradient(circle at top, #1a1a1a, #050505);
     color: white;
-}
 
+    background: linear-gradient(
+        rgba(0,0,0,0.85),
+        rgba(0,0,0,0.95)
+    ),
+    url("https://e0.365dm.com/23/05/1600x900/skysports-f1-max-verstappen_6170155.jpg")
+    center/cover fixed no-repeat;
+}
 /* NAVBAR */
 .navbar {
     display: flex;
@@ -23,8 +28,15 @@ body {
 
 /* HERO */
 .hero {
-    height: 300px;
-    background: url("https://images.unsplash.com/photo-1603297631955-12d3cbb5c5f4") center/cover no-repeat;
+    height: 400px;
+
+    background: linear-gradient(
+        rgba(0,0,0,0.6),
+        rgba(0,0,0,0.9)
+    ),
+    url("https://e0.365dm.com/23/05/1600x900/skysports-f1-max-verstappen_6170155.jpg")
+    center/cover no-repeat;
+
     display: flex;
     align-items: center;
     justify-content: center;
@@ -32,9 +44,19 @@ body {
 }
 
 .hero-content {
-    background: rgba(0,0,0,0.6);
-    padding: 20px;
-    border-radius: 10px;
+    backdrop-filter: blur(10px);
+    background: rgba(0,0,0,0.5);
+    padding: 30px;
+    border-radius: 15px;
+}
+
+.hero h2 {
+    font-size: 3rem;
+    margin-bottom: 10px;
+}
+
+.hero p {
+    color: #ccc;
 }
 
 /* FILTRO */

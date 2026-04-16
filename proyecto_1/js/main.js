@@ -36,3 +36,12 @@ document.getElementById("search").addEventListener("input", (e) => {
 
     renderPosts(filtered);
 });
+
+document.addEventListener("click", (e) => {
+    const btn = e.target.closest(".detail-btn");
+
+    if (btn) {
+        const id = btn.dataset.id;
+        showDetail(id);
+    }
+});
