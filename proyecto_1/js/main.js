@@ -1,17 +1,31 @@
-import { getPosts } from "./api.js";
-import { renderPosts } from "./ui.js";
-import { showDetail } from "./routes.js";
+import { getPosts, getDrivers } from "./api.js";
+import { renderPosts, renderDrivers } from "./ui.js";
 
 let allPosts = [];
 
-const init = async () => {
+// Cargar POSTS
+const loadPosts = async () => {
     allPosts = await getPosts();
+    console.log("Posts:", allPosts); // DEBUG
     renderPosts(allPosts);
+};
+
+// Cargar PILOTOS
+const loadDrivers = async () => {
+    const drivers = await getDrivers();
+    console.log("Drivers:", drivers); // DEBUG
+    renderDrivers(drivers);
+};
+
+// INICIALIZAR TODO
+const init = async () => {
+    await loadPosts();
+    await loadDrivers();
 };
 
 init();
 
-// 🔍 BUSCADOR
+// BUSCADOR
 document.getElementById("search").addEventListener("input", (e) => {
     const text = e.target.value.toLowerCase();
 
@@ -21,11 +35,4 @@ document.getElementById("search").addEventListener("input", (e) => {
     );
 
     renderPosts(filtered);
-});
-
-document.addEventListener("click", (e) => {
-    if (e.target.classList.contains("detail-btn")) {
-        const id = e.target.dataset.id;
-        showDetail(id);
-    }
 });

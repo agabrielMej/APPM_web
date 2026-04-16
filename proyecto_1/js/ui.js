@@ -8,13 +8,30 @@ export const renderPosts = (posts) => {
 
         card.innerHTML = `
             <h3>${post.title}</h3>
-            <p>${traducirTexto(post.body.substring(0, 100))}...</p>
+            <p>${post.body.substring(0, 100)}...</p>
             <button class="detail-btn" data-id="${post.id}">
                 Ver más
             </button>
         `;
 
         container.appendChild(card);
+    });
+};
+
+export const renderDrivers = (drivers) => {
+    const container = document.getElementById("drivers-container");
+    container.innerHTML = "";
+
+    drivers.forEach(driver => {
+        const div = document.createElement("div");
+        div.classList.add("card");
+
+        div.innerHTML = `
+            <h3>${driver.givenName} ${driver.familyName}</h3>
+            <p>${driver.nationality}</p>
+        `;
+
+        container.appendChild(div);
     });
 };
 
