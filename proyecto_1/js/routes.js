@@ -1,8 +1,26 @@
 import { getPostById, getPosts, createPost } from "./api.js";
 import { renderPostDetail, renderPosts } from "./ui.js";
-
 export const showDetail = async (id) => {
+
+    // 🔹 1. buscar en localStorage primero
+    const savedPosts = JSON.parse(localStorage.getItem("myPosts")) || [];
+
+    const localPost = savedPosts.find(p => p.id == id);
+
+    if (localPost) {
+        renderPostDetail(localPost);
+
+        document.getElementById("back-btn").addEventListener("click", async () => {
+            const posts = await getPosts();
+            renderPosts(posts);
+        });
+
+        return;
+    }
+
+    // si no está en local → usar API
     const post = await getPostById(id);
+
     renderPostDetail(post);
 
     document.getElementById("back-btn").addEventListener("click", async () => {
