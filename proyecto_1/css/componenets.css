@@ -111,3 +111,72 @@ button:hover {
 .navbar button:hover::after {
     width: 100%;
 }
+
+.form-container {
+    max-width: 500px;
+    margin: 50px auto;
+    background: rgba(20,20,20,0.8);
+    padding: 30px;
+    border-radius: 15px;
+    backdrop-filter: blur(10px);
+}
+
+.form-container input,
+.form-container textarea {
+    width: 100%;
+    margin-bottom: 15px;
+    padding: 12px;
+    border-radius: 8px;
+    border: 2px solid #333;
+    background: #0f0f0f;
+    color: white;
+    outline: none;
+    transition: 0.3s;
+}
+
+/* efecto al hacer click */
+.form-container input:focus,
+.form-container textarea:focus {
+    border-color: #e10600;
+    box-shadow: 0 0 10px rgba(225, 6, 0, 0.6);
+}
+
+/* placeholder */
+.form-container input::placeholder,
+.form-container textarea::placeholder {
+    color: #777;
+}
+
+.form-container textarea {
+    height: 120px;
+}
+
+#error-msg {
+    color: red;
+}
+
+.form-container button {
+    background: linear-gradient(135deg, #e10600, #ff2a2a);
+    border: none;
+    padding: 12px 18px;
+    color: white;
+    cursor: pointer;
+    border-radius: 8px;
+    font-weight: bold;
+    transition: 0.3s;
+    display: inline-block;
+}
+
+.form-container button:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 10px rgba(225, 6, 0, 0.7);
+}
+
+.form-container h2 {
+    margin-bottom: 20px;
+}
+
+.form-container input,
+.form-container textarea {
+    font-size: 1rem;
+}

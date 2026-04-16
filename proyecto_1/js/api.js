@@ -4,9 +4,16 @@ const BASE_URL = "https://dummyjson.com/posts";
 
 export const getPosts = async () => {
     try {
-        const res = await fetch(BASE_URL);
+        const res = await fetch("https://dummyjson.com/posts");
         const data = await res.json();
-        return data.posts;
+
+        const apiPosts = data.posts;
+
+        // traer posts guardados
+        const savedPosts = JSON.parse(localStorage.getItem("myPosts")) || [];
+
+        return [...savedPosts, ...apiPosts];
+
     } catch (error) {
         console.error("Error:", error);
         return [];
@@ -35,5 +42,23 @@ export const getDrivers = async () => {
     } catch (error) {
         console.error("Error F1:", error);
         return [];
+    }
+};
+
+export const createPost = async (postData) => {
+    try {
+        const res = await fetch("https://dummyjson.com/posts/add", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(postData)
+        });
+
+        const data = await res.json();
+        return data;
+    } catch (error) {
+        console.error("Error creando post:", error);
+        return null;
     }
 };

@@ -2,6 +2,8 @@ import { getPosts, getDrivers } from "./api.js";
 import { renderPosts, renderDrivers } from "./ui.js";
 import { showDetail } from "./routes.js";
 import { showHome } from "./routes.js";
+import { showCreate } from "./routes.js";
+
 
 let allPosts = [];
 
@@ -50,4 +52,9 @@ document.addEventListener("click", (e) => {
 
 document.getElementById("home-btn").addEventListener("click", () => {
     showHome();
+});
+
+
+document.getElementById("create-btn").addEventListener("click", () => {
+    showCreate();
 });
