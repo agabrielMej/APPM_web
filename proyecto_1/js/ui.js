@@ -9,11 +9,21 @@ export const renderPosts = (posts) => {
         card.innerHTML = `
             <h3>${post.title}</h3>
             <p>${post.body.substring(0, 100)}...</p>
-            <button class="detail-btn" data-id="${post.id}">
-                Ver más
-            </button>
-        `;
 
+            <div class="post-buttons">
+                <button class="detail-btn" data-id="${post.id}">
+                    Ver más
+                </button>
+
+                <button class="edit-btn" data-id="${post.id}">
+                    Editar
+                </button>
+
+                <button class="delete-btn" data-id="${post.id}">
+                    Eliminar
+                </button>
+            </div>
+        `;
         container.appendChild(card);
     });
 };

@@ -180,3 +180,14 @@ button:hover {
 .form-container textarea {
     font-size: 1rem;
 }
+
+.edit-btn {
+    background: #ffc107;
+    color: black;
+    margin-top: 5px;
+}
+
+.delete-btn {
+    background: #dc3545;
+    margin-top: 5px;
+}

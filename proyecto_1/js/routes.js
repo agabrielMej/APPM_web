@@ -112,3 +112,57 @@ export const showCreate = () => {
     };
 };
 
+export const deletePostLocal = (id) => {
+    const confirmDelete = confirm("¿Seguro que quieres eliminar este post?");
+    if (!confirmDelete) return;
+
+    let savedPosts = JSON.parse(localStorage.getItem("myPosts")) || [];
+
+    savedPosts = savedPosts.filter(post => post.id != id);
+
+    localStorage.setItem("myPosts", JSON.stringify(savedPosts));
+
+    showHome();
+};
+
+export const showEdit = (id) => {
+    const container = document.getElementById("posts-container");
+
+    const savedPosts = JSON.parse(localStorage.getItem("myPosts")) || [];
+    const post = savedPosts.find(p => p.id == id);
+
+    if (!post) return alert("Solo puedes editar posts creados");
+
+    container.innerHTML = `
+        <div class="form-container">
+            <h2>Editar publicación</h2>
+
+            <form id="edit-form">
+                <input type="text" id="title" value="${post.title}" />
+                <textarea id="body">${post.body}</textarea>
+
+                <button type="submit">Guardar cambios</button>
+            </form>
+        </div>
+    `;
+
+    document.getElementById("edit-form").addEventListener("submit", (e) => {
+        e.preventDefault();
+
+        const title = document.getElementById("title").value.trim();
+        const body = document.getElementById("body").value.trim();
+
+        let savedPosts = JSON.parse(localStorage.getItem("myPosts")) || [];
+
+        savedPosts = savedPosts.map(p => {
+            if (p.id == id) {
+                return { ...p, title, body };
+            }
+            return p;
+        });
+
+        localStorage.setItem("myPosts", JSON.stringify(savedPosts));
+
+        showHome();
+    });
+};
