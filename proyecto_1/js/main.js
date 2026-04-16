@@ -1,5 +1,6 @@
 import { getPosts, getDrivers } from "./api.js";
 import { renderPosts, renderDrivers } from "./ui.js";
+import { showDetail } from "./routes.js";
 
 let allPosts = [];
 
