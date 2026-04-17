@@ -61,7 +61,10 @@ export const renderPostDetail = (post) => {
             <h2>${post.title}</h2>
             <p>${post.body}</p>
 
-            <button id="back-btn">⬅ Volver</button>
+            <div class="detail-buttons">
+                <button id="back-btn">Volver</button>
+                <button id="fav-btn">Favorito</button>
+            </div>
         </div>
     `;
 };

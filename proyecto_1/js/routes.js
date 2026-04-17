@@ -2,7 +2,7 @@ import { getPostById, getPosts, createPost } from "./api.js";
 import { renderPostDetail, renderPosts } from "./ui.js";
 export const showDetail = async (id) => {
 
-    // 🔹 1. buscar en localStorage primero
+    // buscar en localStorage primero
     const savedPosts = JSON.parse(localStorage.getItem("myPosts")) || [];
 
     const localPost = savedPosts.find(p => p.id == id);

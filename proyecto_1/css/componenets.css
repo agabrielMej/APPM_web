@@ -191,3 +191,14 @@ button:hover {
     background: #dc3545;
     margin-top: 5px;
 }
+
+.detail-buttons {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+#fav-btn {
+    background: gold;
+    color: black;
+}
