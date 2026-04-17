@@ -33,15 +33,19 @@ export const renderDrivers = (drivers) => {
     container.innerHTML = "";
 
     drivers.forEach(driver => {
-        const div = document.createElement("div");
-        div.classList.add("card");
+        const card = document.createElement("div");
+        card.classList.add("card");
 
-        div.innerHTML = `
+        card.innerHTML = `
             <h3>${driver.givenName} ${driver.familyName}</h3>
             <p>${driver.nationality}</p>
+
+            <button class="driver-detail-btn" data-id="${driver.driverId}">
+                Ver más
+            </button>
         `;
 
-        container.appendChild(div);
+        container.appendChild(card);
     });
 };
 
@@ -64,6 +68,9 @@ export const renderPostDetail = (post) => {
             <div class="detail-buttons">
                 <button id="back-btn">Volver</button>
                 <button id="fav-btn">Favorito</button>
+                    <button class="remove-fav" data-id="${post.id}">
+                    Quitar
+                    </button>
             </div>
         </div>
     `;
@@ -79,4 +86,25 @@ const traducirTexto = (texto) => {
         .replace(/to/gi, "a")
         .replace(/of/gi, "de")
         .replace(/in/gi, "en");
+};
+
+export const showDriverDetail = async (driverId) => {
+    const container = document.getElementById("posts-container");
+
+    const drivers = await getDrivers();
+    const driver = drivers.find(d => d.driverId === driverId);
+
+    container.innerHTML = `
+        <div class="detail-card">
+            <h2>${driver.givenName} ${driver.familyName}</h2>
+            <p>Nacionalidad: ${driver.nationality}</p>
+            <p>Fecha de nacimiento: ${driver.dateOfBirth}</p>
+
+            <button id="back-btn">⬅ Volver</button>
+        </div>
+    `;
+
+    document.getElementById("back-btn").addEventListener("click", () => {
+        showInfo();
+    });
 };

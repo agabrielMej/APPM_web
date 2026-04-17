@@ -7,6 +7,8 @@ import { showEdit, deletePostLocal } from "./routes.js";
 import { showFavorites } from "./routes.js";
 import { removeFavorite } from "./routes.js";
 import { showInfo } from "./routes.js";
+import { showDriverDetail } from "./routes.js";
+
 
 let allPosts = [];
 
@@ -50,6 +52,7 @@ document.addEventListener("click", (e) => {
     const deleteBtn = e.target.closest(".delete-btn");
     const removeFavBtn = e.target.closest(".remove-fav");
     const favNavBtn = e.target.closest("#favorites-btn");
+    const driverBtn = e.target.closest(".driver-detail-btn");
 
     if (btn) {
         const id = btn.dataset.id;
@@ -75,6 +78,10 @@ document.addEventListener("click", (e) => {
     if (removeFavBtn) {
     removeFavorite(removeFavBtn.dataset.id);
     }
+
+    if (driverBtn) {
+        showDriverDetail(driverBtn.dataset.id);
+    }
 });
 
 
@@ -97,3 +104,4 @@ document.addEventListener("click", (e) => {
     }
 
 });
+
