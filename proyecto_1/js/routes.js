@@ -1,31 +1,43 @@
 import { getPostById, getPosts, createPost } from "./api.js";
 import { renderPostDetail, renderPosts } from "./ui.js";
+import { validatePost } from "./validation.js";
+import { getDrivers } from "./api.js";
+import { renderDrivers } from "./ui.js";
+
 export const showDetail = async (id) => {
 
-    // buscar en localStorage primero
     const savedPosts = JSON.parse(localStorage.getItem("myPosts")) || [];
-
-    const localPost = savedPosts.find(p => p.id == id);
-
-    if (localPost) {
-        renderPostDetail(localPost);
-
-        document.getElementById("back-btn").addEventListener("click", async () => {
-            const posts = await getPosts();
-            renderPosts(posts);
-        });
-
-        return;
-    }
+    let post = savedPosts.find(p => p.id == id);
 
     // si no está en local → usar API
-    const post = await getPostById(id);
+    if (!post) {
+        post = await getPostById(id);
+    }
 
     renderPostDetail(post);
 
     document.getElementById("back-btn").addEventListener("click", async () => {
         const posts = await getPosts();
         renderPosts(posts);
+    });
+
+    //botón favorito
+    document.getElementById("fav-btn").addEventListener("click", () => {
+
+        let favorites = JSON.parse(localStorage.getItem("favorites")) || [];
+
+        const exists = favorites.find(p => p.id == post.id);
+
+        if (exists) {
+            alert("Ya está en favoritos");
+            return;
+        }
+
+        favorites.push(post);
+
+        localStorage.setItem("favorites", JSON.stringify(favorites));
+
+        alert("Agregado a favoritos ⭐");
     });
 };
 
@@ -45,7 +57,7 @@ export const showCreate = () => {
 
     container.innerHTML = `
         <div class="form-container">
-            <h2>Crear publicación </h2>
+            <h2>Crear publicación</h2>
 
             <form id="create-form">
                 <input type="text" id="title" placeholder="Título" />
@@ -68,61 +80,43 @@ export const showCreate = () => {
         const body = document.getElementById("body").value.trim();
         const author = document.getElementById("author").value.trim();
 
-        // VALIDACIÓN
-        if (title.length < 5) {
-            return showError("El título debe tener al menos 5 caracteres");
+        //VALIDACIÓN CENTRALIZADA
+        const error = validatePost(title, body, author);
+
+        if (error) {
+            return showError(error);
         }
 
-        if (body.length < 20) {
-            return showError("El contenido debe tener al menos 20 caracteres");
-        }
-
-        if (!author) {
-            return showError("El autor es obligatorio");
-        }
-
-        const newPost = {
+        const newPostData = {
             title,
             body,
             userId: 1
         };
 
-        const result = await createPost(newPost);
+        const result = await createPost(newPostData);
 
         if (result) {
 
-        // agregar manualmente el post a la lista
-        const newPost = {
-            id: Date.now(),
-            title,
-            body
-        };
+            //GUARDAR LOCALMENTE
+            const newPost = {
+                id: Date.now(),
+                title,
+                body
+            };
 
-    // guardar en localStorage
-        const savedPosts = JSON.parse(localStorage.getItem("myPosts")) || [];
-        savedPosts.unshift(newPost);
-        localStorage.setItem("myPosts", JSON.stringify(savedPosts));
+            const savedPosts = JSON.parse(localStorage.getItem("myPosts")) || [];
+            savedPosts.unshift(newPost);
 
-        showHome();
-    }
+            localStorage.setItem("myPosts", JSON.stringify(savedPosts));
+
+            showHome();
+        }
     });
 
     const showError = (msg) => {
         document.getElementById("error-msg").textContent = msg;
     };
-};
-
-export const deletePostLocal = (id) => {
-    const confirmDelete = confirm("¿Seguro que quieres eliminar este post?");
-    if (!confirmDelete) return;
-
-    let savedPosts = JSON.parse(localStorage.getItem("myPosts")) || [];
-
-    savedPosts = savedPosts.filter(post => post.id != id);
-
-    localStorage.setItem("myPosts", JSON.stringify(savedPosts));
-
-    showHome();
+    
 };
 
 export const showEdit = (id) => {
@@ -165,4 +159,57 @@ export const showEdit = (id) => {
 
         showHome();
     });
+};
+
+export const showFavorites = () => {
+    const container = document.getElementById("posts-container");
+
+    const favorites = JSON.parse(localStorage.getItem("favorites")) || [];
+
+    if (favorites.length === 0) {
+        container.innerHTML = `
+            <h2>No hay favoritos </h2>
+        `;
+        return;
+    }
+
+    container.innerHTML = `<h2>Mis favoritos ⭐</h2>`;
+
+    renderPosts(favorites);
+};
+
+export const removeFavorite = (id) => {
+
+    let favorites = JSON.parse(localStorage.getItem("favorites")) || [];
+
+    favorites = favorites.filter(post => post.id != id);
+
+    localStorage.setItem("favorites", JSON.stringify(favorites));
+
+    alert("Eliminado de favoritos");
+};
+
+export const deletePostLocal = (id) => {
+    const confirmDelete = confirm("¿Seguro que quieres eliminar este post?");
+    if (!confirmDelete) return;
+
+    let savedPosts = JSON.parse(localStorage.getItem("myPosts")) || [];
+
+    savedPosts = savedPosts.filter(post => post.id != id);
+
+    localStorage.setItem("myPosts", JSON.stringify(savedPosts));
+
+    showHome();
+};
+
+export const showInfo = async () => {
+    const container = document.getElementById("posts-container");
+
+    container.innerHTML = `
+        <h2>Pilotos actuales 🏎️</h2>
+        <div id="drivers-container" class="grid"></div>
+    `;
+
+    const drivers = await getDrivers();
+    renderDrivers(drivers);
 };

@@ -4,7 +4,9 @@ import { showDetail } from "./routes.js";
 import { showHome } from "./routes.js";
 import { showCreate } from "./routes.js";
 import { showEdit, deletePostLocal } from "./routes.js";
-
+import { showFavorites } from "./routes.js";
+import { removeFavorite } from "./routes.js";
+import { showInfo } from "./routes.js";
 
 let allPosts = [];
 
@@ -46,6 +48,8 @@ document.addEventListener("click", (e) => {
     const detailBtn = e.target.closest(".detail-btn");
     const editBtn = e.target.closest(".edit-btn");
     const deleteBtn = e.target.closest(".delete-btn");
+    const removeFavBtn = e.target.closest(".remove-fav");
+    const favNavBtn = e.target.closest("#favorites-btn");
 
     if (btn) {
         const id = btn.dataset.id;
@@ -63,6 +67,14 @@ document.addEventListener("click", (e) => {
     if (deleteBtn) {
         deletePostLocal(deleteBtn.dataset.id);
     }
+
+    if (favNavBtn) {
+        showFavorites();
+    }
+
+    if (removeFavBtn) {
+    removeFavorite(removeFavBtn.dataset.id);
+    }
 });
 
 
@@ -75,3 +87,13 @@ document.getElementById("create-btn").addEventListener("click", () => {
     showCreate();
 });
 
+
+document.addEventListener("click", (e) => {
+
+    const infoBtn = e.target.closest("#info-btn");
+
+    if (infoBtn) {
+        showInfo();
+    }
+
+});

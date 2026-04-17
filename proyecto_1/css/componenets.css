@@ -74,6 +74,18 @@ button:hover {
     animation: fadeIn 0.5s ease;
 }
 
+.card p {
+    color: #aaa;
+    line-height: 1.4;
+
+    overflow-wrap: break-word;
+    word-break: break-word;
+}
+
+.card h3 {
+    overflow-wrap: break-word;
+}
+
 @keyframes fadeIn {
     from {
         opacity: 0;
