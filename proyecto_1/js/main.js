@@ -9,14 +9,58 @@ import { removeFavorite } from "./routes.js";
 import { showInfo } from "./routes.js";
 import { showDriverDetail } from "./routes.js";
 
-
+let currentPage = 1;
+const postsPerPage = 9;
 let allPosts = [];
+
 
 // Cargar POSTS
 const loadPosts = async () => {
     allPosts = await getPosts();
-    console.log("Posts:", allPosts); // DEBUG
-    renderPosts(allPosts);
+    renderPaginatedPosts();
+};
+
+const renderPaginatedPosts = () => {
+
+    const start = (currentPage - 1) * postsPerPage;
+    const end = start + postsPerPage;
+
+    const paginatedPosts = allPosts.slice(start, end);
+
+    renderPosts(paginatedPosts);
+
+    renderPaginationControls();
+};
+
+const renderPaginationControls = () => {
+
+    let controls = document.getElementById("pagination");
+
+    if (!controls) {
+        controls = document.createElement("div");
+        controls.id = "pagination";
+        document.getElementById("posts-container").after(controls);
+    }
+
+    controls.innerHTML = `
+        <button id="prev-page">⬅ Anterior</button>
+        <span>Página ${currentPage}</span>
+        <button id="next-page">Siguiente ➡</button>
+    `;
+
+    document.getElementById("prev-page").onclick = () => {
+        if (currentPage > 1) {
+            currentPage--;
+            renderPaginatedPosts();
+        }
+    };
+
+    document.getElementById("next-page").onclick = () => {
+        if (currentPage * postsPerPage < allPosts.length) {
+            currentPage++;
+            renderPaginatedPosts();
+        }
+    };
 };
 
 // Cargar PILOTOS
@@ -76,7 +120,7 @@ document.addEventListener("click", (e) => {
     }
 
     if (removeFavBtn) {
-    removeFavorite(removeFavBtn.dataset.id);
+        removeFavorite(removeFavBtn.dataset.id);
     }
 
     if (driverBtn) {
