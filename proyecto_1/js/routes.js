@@ -3,6 +3,7 @@ import { renderPostDetail, renderPosts } from "./ui.js";
 import { validatePost } from "./validation.js";
 import { getDrivers } from "./api.js";
 import { renderDrivers } from "./ui.js";
+import { reloadPosts } from "./main.js";
 
 
 export const showDetail = async (id) => {
@@ -38,8 +39,15 @@ export const showDetail = async (id) => {
 
         localStorage.setItem("favorites", JSON.stringify(favorites));
 
-        alert("Agregado a favoritos ⭐");
+        alert("Agregado a favoritos");
+
+        reloadPosts();
     });
+
+    if (!post) {
+    alert("Este post ya no existe");
+    return reloadPosts();
+}
 };
 
 
@@ -169,18 +177,16 @@ export const showFavorites = () => {
     const favorites = JSON.parse(localStorage.getItem("favorites")) || [];
 
     if (favorites.length === 0) {
-        container.innerHTML = `
-            <h2>No hay favoritos </h2>
-        `;
+        container.innerHTML = `<h2>No hay favoritos</h2>`;
         return;
     }
 
-    container.innerHTML = `<h2>Mis favoritos ⭐</h2>`;
+    container.innerHTML = `<h2>Mis favoritos</h2>`;
 
     renderPosts(favorites);
 };
 
-export const removeFavorite = (id) => {
+export const removeFavorite = async (id) => {
 
     let favorites = JSON.parse(localStorage.getItem("favorites")) || [];
 
@@ -189,9 +195,11 @@ export const removeFavorite = (id) => {
     localStorage.setItem("favorites", JSON.stringify(favorites));
 
     alert("Eliminado de favoritos");
+
+    showFavorites(); 
 };
 
-export const deletePostLocal = (id) => {
+export const deletePostLocal = async (id) => {
     const confirmDelete = confirm("¿Seguro que quieres eliminar este post?");
     if (!confirmDelete) return;
 
@@ -201,7 +209,13 @@ export const deletePostLocal = (id) => {
 
     localStorage.setItem("myPosts", JSON.stringify(savedPosts));
 
-    showHome();
+    await reloadPosts(); 
+
+    let favorites = JSON.parse(localStorage.getItem("favorites")) || [];
+
+    favorites = favorites.filter(post => post.id != id);
+
+    localStorage.setItem("favorites", JSON.stringify(favorites));
 };
 
 export const showInfo = async () => {

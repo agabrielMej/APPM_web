@@ -8,7 +8,7 @@ export const renderPosts = (posts) => {
 
         card.innerHTML = `
             <h3>${post.title}</h3>
-            <p>${post.body.substring(0, 100)}...</p>
+            <p>${(post.body || "").substring(0, 100)}...</p>
 
             <div class="post-buttons">
                 <button class="detail-btn" data-id="${post.id}">

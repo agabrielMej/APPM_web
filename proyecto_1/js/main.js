@@ -41,7 +41,7 @@ const renderPaginatedPosts = () => {
 
 const renderPaginationControls = () => {
     if (currentView !== "home") return;
-
+    
     let controls = document.getElementById("pagination");
 
     if (!controls) {
@@ -124,7 +124,14 @@ document.addEventListener("click", (e) => {
     }
 
     if (favNavBtn) {
-        showFavorites();
+    currentView = "favorites";
+
+    const favorites = JSON.parse(localStorage.getItem("favorites")) || [];
+
+    allPosts = favorites;
+    currentPage = 1;
+
+    renderPaginatedPosts();
     }
 
     if (removeFavBtn) {
@@ -138,7 +145,7 @@ document.addEventListener("click", (e) => {
 
 
 document.getElementById("home-btn").addEventListener("click", () => {
-    showHome();
+    reloadPosts();
 });
 
 
@@ -208,12 +215,12 @@ document.getElementById("search").addEventListener("input", applyFilters);
 document.getElementById("filter-type").addEventListener("change", applyFilters);
 document.getElementById("filter-length").addEventListener("change", applyFilters);
 
-const showFilters = () => {
-    const filters = document.getElementById("filters");
-    if (filters) filters.style.display = "flex";
-};
+export const reloadPosts = async () => {
+    const posts = await getPosts();
 
-const hideFilters = () => {
-    const filters = document.getElementById("filters");
-    if (filters) filters.style.display = "none";
+    originalPosts = posts;
+    allPosts = posts;
+    currentPage = 1;
+
+    renderPaginatedPosts();
 };
