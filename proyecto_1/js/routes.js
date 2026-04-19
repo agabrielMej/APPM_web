@@ -4,6 +4,7 @@ import { validatePost } from "./validation.js";
 import { getDrivers } from "./api.js";
 import { renderDrivers } from "./ui.js";
 
+
 export const showDetail = async (id) => {
 
     const savedPosts = JSON.parse(localStorage.getItem("myPosts")) || [];
@@ -43,13 +44,14 @@ export const showDetail = async (id) => {
 
 
 export const showHome = async () => {
-    const container = document.getElementById("posts-container");
 
+    const container = document.getElementById("posts-container");
     container.innerHTML = "";
 
     const posts = await getPosts();
     renderPosts(posts);
 };
+
 
 
 export const showCreate = () => {
@@ -203,7 +205,11 @@ export const deletePostLocal = (id) => {
 };
 
 export const showInfo = async () => {
+
     const container = document.getElementById("posts-container");
+    const pagination = document.getElementById("pagination");
+
+    if (pagination) pagination.innerHTML = "";
 
     container.innerHTML = `
         <h2>Pilotos actuales </h2>
@@ -212,6 +218,8 @@ export const showInfo = async () => {
 
     const drivers = await getDrivers();
     renderDrivers(drivers);
+    currentView = "info";
+    
 };
 export const showDriverDetail = async (driverId) => {
     const container = document.getElementById("posts-container");
@@ -342,3 +350,4 @@ export const showDriverDetail = async (driverId) => {
         showInfo();
     });
 };
+

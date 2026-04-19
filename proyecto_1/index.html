@@ -34,7 +34,23 @@
     <section class="filters">
         <input type="text" id="search" placeholder="Buscar publicación...">
     </section>
+    <section class="filters">
 
+    <input type="text" id="search" placeholder="Buscar publicación...">
+
+    <select id="filter-type">
+        <option value="all">Todos</option>
+        <option value="mine">Mis posts</option>
+        <option value="api">Posts API</option>
+    </select>
+
+    <select id="filter-length">
+        <option value="all">Todos</option>
+        <option value="short">Cortos</option>
+        <option value="long">Largos</option>
+    </select>
+
+    </section>
     <main id="posts-container" class="grid"></main>
 
 

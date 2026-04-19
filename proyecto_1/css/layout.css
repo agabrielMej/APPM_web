@@ -57,3 +57,19 @@ section {
     border-radius: 6px;
     cursor: pointer;
 }
+
+.filters {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin: 20px;
+    flex-wrap: wrap;
+}
+
+.filters select {
+    padding: 10px;
+    border-radius: 6px;
+    border: none;
+    background: #111;
+    color: white;
+}

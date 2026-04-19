@@ -12,11 +12,18 @@ import { showDriverDetail } from "./routes.js";
 let currentPage = 1;
 const postsPerPage = 9;
 let allPosts = [];
-
+let originalPosts = [];
+let currentView = "home";
 
 // Cargar POSTS
 const loadPosts = async () => {
-    allPosts = await getPosts();
+    const posts = await getPosts();
+
+    originalPosts = posts;
+    allPosts = posts;
+
+    currentView = "home"; 
+
     renderPaginatedPosts();
 };
 
@@ -33,6 +40,7 @@ const renderPaginatedPosts = () => {
 };
 
 const renderPaginationControls = () => {
+    if (currentView !== "home") return;
 
     let controls = document.getElementById("pagination");
 
@@ -144,8 +152,68 @@ document.addEventListener("click", (e) => {
     const infoBtn = e.target.closest("#info-btn");
 
     if (infoBtn) {
-        showInfo();
-    }
+    currentView = "info";
+    showInfo();
+}
 
 });
 
+const applyFilters = () => {
+
+    let filtered = [...originalPosts];
+
+    const searchText = document.getElementById("search").value.toLowerCase();
+    const typeFilter = document.getElementById("filter-type").value;
+    const lengthFilter = document.getElementById("filter-length").value;
+
+    //BÚSQUEDA
+    if (searchText) {
+        filtered = filtered.filter(post =>
+            post.title.toLowerCase().includes(searchText) ||
+            post.body.toLowerCase().includes(searchText)
+        );
+    }
+
+    // MIS POSTS / API
+    const myPosts = JSON.parse(localStorage.getItem("myPosts")) || [];
+
+    if (typeFilter === "mine") {
+        filtered = filtered.filter(post =>
+            myPosts.some(p => p.id == post.id)
+        );
+    }
+
+    if (typeFilter === "api") {
+        filtered = filtered.filter(post =>
+            !myPosts.some(p => p.id == post.id)
+        );
+    }
+
+    // LONGITUD
+    if (lengthFilter === "short") {
+        filtered = filtered.filter(post => post.body.length < 100);
+    }
+
+    if (lengthFilter === "long") {
+        filtered = filtered.filter(post => post.body.length >= 100);
+    }
+
+    // aplicar paginación
+    allPosts = filtered;
+    currentPage = 1;
+    renderPaginatedPosts();
+};
+
+document.getElementById("search").addEventListener("input", applyFilters);
+document.getElementById("filter-type").addEventListener("change", applyFilters);
+document.getElementById("filter-length").addEventListener("change", applyFilters);
+
+const showFilters = () => {
+    const filters = document.getElementById("filters");
+    if (filters) filters.style.display = "flex";
+};
+
+const hideFilters = () => {
+    const filters = document.getElementById("filters");
+    if (filters) filters.style.display = "none";
+};
