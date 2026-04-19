@@ -218,7 +218,6 @@ export const showInfo = async () => {
 
     const drivers = await getDrivers();
     renderDrivers(drivers);
-    currentView = "info";
     
 };
 export const showDriverDetail = async (driverId) => {
