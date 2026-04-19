@@ -1,0 +1,217 @@
+.card {
+    background: rgba(20, 20, 20, 0.6);
+    backdrop-filter: blur(8px);
+    border-radius: 16px;
+    padding: 20px;
+    transition: all 0.3s ease;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.7);
+}
+
+/* Línea roja estilo F1 */
+.card::before {
+    height: 3px;
+    background: linear-gradient(to right, #e10600, transparent);
+}
+
+/* Hover PRO */
+.card:hover {
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.9);
+}
+
+/* Títulos */
+.card h3 {
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+}
+
+/* Texto */
+.card p {
+    color: #aaa;
+    line-height: 1.4;
+}
+button {
+    background: linear-gradient(135deg, #e10600, #ff2a2a);
+    border: none;
+    padding: 10px 16px;
+    color: white;
+    cursor: pointer;
+    border-radius: 8px;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+button:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 10px rgba(225, 6, 0, 0.7);
+}
+
+.hero {
+    height: 350px;
+    background: linear-gradient(
+        rgba(0,0,0,0.7),
+        rgba(0,0,0,0.9)
+    ),
+    url("https://images.unsplash.com/photo-1549921296-3ecf6c63f8a7")
+    center/cover no-repeat;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.hero-content {
+    text-align: center;
+    max-width: 600px;
+}
+
+.hero h2 {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+}
+
+.card {
+    animation: fadeIn 0.5s ease;
+}
+
+.card p {
+    color: #aaa;
+    line-height: 1.4;
+
+    overflow-wrap: break-word;
+    word-break: break-word;
+}
+
+.card h3 {
+    overflow-wrap: break-word;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.navbar button {
+    background: none;
+    border: none;
+    color: white;
+    font-weight: bold;
+    margin-left: 20px;
+    cursor: pointer;
+    position: relative;
+    font-size: 1rem;
+}
+
+/* línea animada debajo */
+.navbar button::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -5px;
+    width: 0%;
+    height: 2px;
+    background: white;
+    transition: 0.3s;
+}
+
+.navbar button:hover::after {
+    width: 100%;
+}
+
+.form-container {
+    max-width: 500px;
+    margin: 50px auto;
+    background: rgba(20,20,20,0.8);
+    padding: 30px;
+    border-radius: 15px;
+    backdrop-filter: blur(10px);
+}
+
+.form-container input,
+.form-container textarea {
+    width: 100%;
+    margin-bottom: 15px;
+    padding: 12px;
+    border-radius: 8px;
+    border: 2px solid #333;
+    background: #0f0f0f;
+    color: white;
+    outline: none;
+    transition: 0.3s;
+}
+
+/* efecto al hacer click */
+.form-container input:focus,
+.form-container textarea:focus {
+    border-color: #e10600;
+    box-shadow: 0 0 10px rgba(225, 6, 0, 0.6);
+}
+
+/* placeholder */
+.form-container input::placeholder,
+.form-container textarea::placeholder {
+    color: #777;
+}
+
+.form-container textarea {
+    height: 120px;
+}
+
+#error-msg {
+    color: red;
+}
+
+.form-container button {
+    background: linear-gradient(135deg, #e10600, #ff2a2a);
+    border: none;
+    padding: 12px 18px;
+    color: white;
+    cursor: pointer;
+    border-radius: 8px;
+    font-weight: bold;
+    transition: 0.3s;
+    display: inline-block;
+}
+
+.form-container button:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 10px rgba(225, 6, 0, 0.7);
+}
+
+.form-container h2 {
+    margin-bottom: 20px;
+}
+
+.form-container input,
+.form-container textarea {
+    font-size: 1rem;
+}
+
+.edit-btn {
+    background: #ffc107;
+    color: black;
+    margin-top: 5px;
+}
+
+.delete-btn {
+    background: #dc3545;
+    margin-top: 5px;
+}
+
+.detail-buttons {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+#fav-btn {
+    background: gold;
+    color: black;
+}
+
