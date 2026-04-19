@@ -41,7 +41,7 @@ const renderPaginatedPosts = () => {
 
 const renderPaginationControls = () => {
     if (currentView !== "home") return;
-    
+
     let controls = document.getElementById("pagination");
 
     if (!controls) {
@@ -220,7 +220,8 @@ export const reloadPosts = async () => {
 
     originalPosts = posts;
     allPosts = posts;
-    currentPage = 1;
 
-    renderPaginatedPosts();
+    renderPaginatedPosts(); 
 };
+
+console.log("Página actual:", currentPage);
