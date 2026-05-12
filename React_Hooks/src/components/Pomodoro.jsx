@@ -2,18 +2,22 @@ import { useState, useEffect, useRef } from "react";
 import { formatTime } from "../utils/formatTime";
 import "../styles/styles.css";
 
-const WORK_TIME = 25; // 25 min
-const BREAK_TIME = 3; // 5 min
-
 const Pomodoro = () => {
-  const [timeLeft, setTimeLeft] = useState(WORK_TIME);
+  const [timeLeft, setTimeLeft] = useState(1500);
   const [isRunning, setIsRunning] = useState(false);
   const [mode, setMode] = useState("work");
   const [sessions, setSessions] = useState([]);
 
+  const [workMins, setWorkMins] = useState("25");
+  const [breakMins, setBreakMins] = useState("5");
+
   const intervalRef = useRef(null);
 
-  // ⏱️ Timer
+  // conversión segura a segundos
+  const WORK_TIME = Math.round((parseFloat(workMins) || 0) * 60);
+  const BREAK_TIME = Math.round((parseFloat(breakMins) || 0) * 60);
+
+  // TIMER
   useEffect(() => {
     if (isRunning && timeLeft > 0) {
       intervalRef.current = setInterval(() => {
@@ -28,11 +32,10 @@ const Pomodoro = () => {
     return () => clearInterval(intervalRef.current);
   }, [isRunning, timeLeft]);
 
-  // 🔄 Cambio de modo automático
+  // CAMBIO AUTOMÁTICO
   useEffect(() => {
-    if (timeLeft === 0) {
+    if (timeLeft === 0 && WORK_TIME > 0 && BREAK_TIME > 0) {
       if (mode === "work") {
-        // guardar sesión de trabajo
         setSessions(prev => [
           ...prev,
           {
@@ -50,7 +53,14 @@ const Pomodoro = () => {
       setTimeLeft(newMode === "work" ? WORK_TIME : BREAK_TIME);
       setIsRunning(true);
     }
-  }, [timeLeft, mode]);
+  }, [timeLeft, mode, WORK_TIME, BREAK_TIME]);
+
+  // SINCRONIZAR INPUTS
+  useEffect(() => {
+    if (!isRunning && WORK_TIME > 0 && BREAK_TIME > 0) {
+      setTimeLeft(mode === "work" ? WORK_TIME : BREAK_TIME);
+    }
+  }, [workMins, breakMins, mode, isRunning, WORK_TIME, BREAK_TIME]);
 
   const toggleTimer = () => {
     setIsRunning(prev => !prev);
@@ -59,14 +69,61 @@ const Pomodoro = () => {
   const resetTimer = () => {
     setIsRunning(false);
     setMode("work");
-    setTimeLeft(WORK_TIME);
+    setTimeLeft(WORK_TIME || 1500);
     setSessions([]);
     clearInterval(intervalRef.current);
+  };
+
+  // GUARDAR 
+  const savePartialSession = () => {
+    const totalTime = mode === "work" ? WORK_TIME : BREAK_TIME;
+    const elapsed = totalTime - timeLeft;
+
+    if (elapsed > 0) {
+      setSessions(prev => [
+        ...prev,
+        {
+          id: Date.now(),
+          type: `${mode} (parcial)`,
+          duration: elapsed,
+          completedAt: new Date()
+        }
+      ]);
+    }
   };
 
   return (
     <div className="container">
       <div className="card">
+
+        <div style={{ marginBottom: "15px" }}>
+          <div>
+            Trabajo (min):
+            <input
+              type="number"
+              step="0.1"
+              min="0.1"
+              max="60"
+              value={workMins}
+              disabled={isRunning}
+              onChange={(e) => setWorkMins(e.target.value)}
+            />
+          </div>
+
+          <div>
+            Descanso (min):
+            <input
+              type="number"
+              step="0.1"
+              min="0.1"
+              max="60"
+              value={breakMins}
+              disabled={isRunning}
+              onChange={(e) => setBreakMins(e.target.value)}
+            />
+          </div>
+        </div>
+
         <div className="title">
           {mode === "work" ? "TRABAJO" : "DESCANSO"}
         </div>
@@ -75,6 +132,7 @@ const Pomodoro = () => {
           {formatTime(timeLeft)}
         </div>
 
+        {/* BOTONES */}
         <div className="buttons">
           <button className="start" onClick={toggleTimer}>
             {isRunning ? "Pausar" : "Iniciar"}
@@ -83,8 +141,13 @@ const Pomodoro = () => {
           <button className="reset" onClick={resetTimer}>
             Reiniciar
           </button>
+
+          <button onClick={savePartialSession}>
+            Guardar sesión
+          </button>
         </div>
 
+        {/* HISTORIAL */}
         <div style={{ marginTop: "20px" }}>
           <h3>Sesiones:</h3>
           <ul>
@@ -95,6 +158,7 @@ const Pomodoro = () => {
             ))}
           </ul>
         </div>
+
       </div>
     </div>
   );
