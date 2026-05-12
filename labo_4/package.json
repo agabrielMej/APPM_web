@@ -1,0 +1,14 @@
+{
+  "name": "labo_4",
+  "version": "1.0.0",
+  "description": "Laboratorio 4 - JavaScript API",
+  "type": "module",
+  "scripts": {
+    "servidor-malo": "node servidor-malo.js",
+    "servidor": "node servidor-corregido.js",
+    "api": "node api/index.js"
+  },
+  "dependencies": {
+    "express": "^4.21.2"
+  }
+}
