@@ -1,70 +1,83 @@
-# Getting Started with Create React App
+# Pomodoro Timer - React Hooks
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Este proyecto consiste en la implementación de un temporizador Pomodoro utilizando React, con el objetivo de practicar y comprender el uso de los hooks principales: useState, useEffect y useRef.
 
-## Available Scripts
+---
 
-In the project directory, you can run:
+## Explicación en video
 
-### `npm start`
+Puedes ver la explicación del proyecto en el siguiente enlace:
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+https://www.youtube.com/watch?v=Czoi83QbLYk
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+---
 
-### `npm test`
+## Tecnologías utilizadas
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- React
+- JavaScript (ES6+)
+- CSS
 
-### `npm run build`
+---
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Hooks utilizados
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### useState
+Se utiliza para manejar el estado del componente:
+- Tiempo restante (`timeLeft`)
+- Estado del temporizador (`isRunning`)
+- Modo actual (`work` o `break`)
+- Historial de sesiones (`sessions`)
+- Configuración de minutos (trabajo y descanso)
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+---
 
-### `npm run eject`
+### useEffect
+Se utiliza para manejar efectos secundarios:
+- Ejecutar el temporizador con `setInterval`
+- Detectar cuando el tiempo llega a cero
+- Cambiar automáticamente entre modo trabajo y descanso
+- Sincronizar los valores cuando el usuario cambia la configuración
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+---
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### useRef
+Se utiliza para almacenar el identificador del `setInterval`.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+Esto permite:
+- Mantener el valor entre renders
+- Limpiar correctamente el intervalo con `clearInterval`
+- Evitar renders innecesarios
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+---
 
-## Learn More
+## Funcionalidades por nivel
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+### Nivel 1
+- Temporizador en cuenta regresiva
+- Botones de iniciar/pausar y reiniciar
+- Formato de tiempo en MM:SS
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+---
 
-### Code Splitting
+### Nivel 2
+- Alternancia automática entre trabajo y descanso
+- Uso de un segundo `useEffect`
+- Historial de sesiones completadas
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+---
 
-### Analyzing the Bundle Size
+### Nivel 3
+- Configuración de minutos de trabajo y descanso
+- Inputs dinámicos (bloqueados durante ejecución)
+- Guardado de sesiones parciales
+- Manejo de estados derivados
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+---
 
-### Making a Progressive Web App
+## Instalación y ejecución
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+Clona el repositorio:
 
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+```bash
+git clone https://github.com/tu-usuario/tu-repo.git
