@@ -8,7 +8,11 @@ import CalendarView from "./components/CalendarView";
 import FormularioItem from "./components/FormularioItem";
 
 function App() {
-  const [view, setView] = useState("timeline");
+  const [view, setView] =
+    useState("timeline");
+
+  const [filtro, setFiltro] =
+    useState("todos");
 
   const [items, setItems] = useState(() => {
     try {
@@ -17,71 +21,7 @@ function App() {
 
       return guardados
         ? JSON.parse(guardados)
-        : [
-            {
-              id: crypto.randomUUID(),
-
-              nombre: "Pecho y triceps",
-
-              categoriaId: "fuerza",
-
-              estado: "completado",
-
-              puntuacion: 9,
-
-              fechaRegistro:
-                new Date().toISOString(),
-
-              fechaActividad:
-                new Date().toISOString(),
-
-              notas:
-                "Buen rendimiento en press banca",
-
-              atributos: {
-                duracion: 90,
-
-                ejercicios: [
-                  "Press banca",
-                  "Press inclinado",
-                ],
-              },
-
-              activo: true,
-            },
-
-            {
-              id: crypto.randomUUID(),
-
-              nombre: "Cardio intenso",
-
-              categoriaId: "cardio",
-
-              estado: "pendiente",
-
-              puntuacion: 7,
-
-              fechaRegistro:
-                new Date().toISOString(),
-
-              fechaActividad:
-                new Date().toISOString(),
-
-              notas:
-                "Falta mejorar resistencia",
-
-              atributos: {
-                duracion: 45,
-
-                ejercicios: [
-                  "Caminadora",
-                  "Bicicleta",
-                ],
-              },
-
-              activo: true,
-            },
-          ];
+        : [];
     } catch {
       return [];
     }
@@ -106,6 +46,14 @@ function App() {
     setItems(nuevosItems);
   };
 
+  const itemsFiltrados =
+    filtro === "todos"
+      ? items
+      : items.filter(
+          (item) =>
+            item.categoriaId === filtro
+        );
+
   return (
     <div className="app">
       <Topbar
@@ -113,19 +61,22 @@ function App() {
         setView={setView}
       />
 
-      <Filters />
+      <Filters
+        filtro={filtro}
+        setFiltro={setFiltro}
+      />
 
-      <StatsCards />
+      <StatsCards items={items} />
 
       <FormularioItem addItem={addItem} />
 
       {view === "timeline" ? (
         <Timeline
-          items={items}
+          items={itemsFiltrados}
           eliminarItem={eliminarItem}
         />
       ) : (
-        <CalendarView />
+        <CalendarView items={items} />
       )}
     </div>
   );

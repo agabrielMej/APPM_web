@@ -1,12 +1,49 @@
-function Filters() {
+function Filters({
+  filtro,
+  setFiltro,
+}) {
   return (
     <div className="filters-container">
       <div className="filters">
-        <button>Todos</button>
-        <button>Fuerza</button>
-        <button>Cardio</button>
-        <button>Flexibilidad</button>
-        <button>Deportes</button>
+        <button
+          onClick={() =>
+            setFiltro("todos")
+          }
+        >
+          Todos
+        </button>
+
+        <button
+          onClick={() =>
+            setFiltro("fuerza")
+          }
+        >
+          Fuerza
+        </button>
+
+        <button
+          onClick={() =>
+            setFiltro("cardio")
+          }
+        >
+          Cardio
+        </button>
+
+        <button
+          onClick={() =>
+            setFiltro("flexibilidad")
+          }
+        >
+          Flexibilidad
+        </button>
+
+        <button
+          onClick={() =>
+            setFiltro("deportes")
+          }
+        >
+          Deportes
+        </button>
       </div>
 
       <input

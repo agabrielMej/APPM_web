@@ -1,27 +1,22 @@
-function CalendarView() {
-  const days = [
-    { number: 12, active: true },
-    { number: 13, active: false },
-    { number: 14, active: true },
-    { number: 15, active: false },
-    { number: 16, active: true },
-    { number: 17, active: false },
-    { number: 18, active: true },
-    { number: 19, active: true },
-    { number: 20, active: false },
+function CalendarView({ items }) {
+  const dias = [
+    ...new Set(
+      items.map((item) =>
+        item.fechaRegistro
+          .split("T")[0]
+      )
+    ),
   ];
 
   return (
     <section className="calendar-view">
       <div className="calendar-grid">
-        {days.map((day, index) => (
+        {dias.map((dia) => (
           <div
-            key={index}
-            className={`calendar-day ${
-              day.active ? "active-day" : ""
-            }`}
+            key={dia}
+            className="calendar-day active-day"
           >
-            {day.number}
+            {dia}
           </div>
         ))}
       </div>
