@@ -1,4 +1,7 @@
-function ActivityCard({ item }) {
+function ActivityCard({
+  item,
+  eliminarItem,
+}) {
   return (
     <article
       className={`activity-card ${item.categoriaId}`}
@@ -11,31 +14,46 @@ function ActivityCard({ item }) {
         </p>
 
         <p>
-          Duracion:{" "}
-          {item.atributos.duracion} min
+          Duracion:
+          {" "}
+          {item.atributos.duracion}
+          {" "}min
         </p>
 
         <p>
-          Puntuacion:{" "}
-          {item.puntuacion ?? "Sin puntuacion"}
+          Puntuacion:
+          {" "}
+          {item.puntuacion ??
+            "Sin puntuacion"}
         </p>
 
         <p>
           Ejercicios:
           {" "}
-          {item.atributos.ejercicios.join(", ")}
+          {item.atributos.ejercicios.join(
+            ", "
+          )}
         </p>
 
-        <p>
-          {item.notas}
-        </p>
+        <p>{item.notas}</p>
       </div>
 
-      <span
-        className={`status ${item.estado}`}
-      >
-        {item.estado}
-      </span>
+      <div className="card-actions">
+        <span
+          className={`status ${item.estado}`}
+        >
+          {item.estado}
+        </span>
+
+        <button
+          className="delete-btn"
+          onClick={() =>
+            eliminarItem(item.id)
+          }
+        >
+          Eliminar
+        </button>
+      </div>
     </article>
   );
 }

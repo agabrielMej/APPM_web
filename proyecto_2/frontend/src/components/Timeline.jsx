@@ -1,9 +1,15 @@
 import DayCard from "./DayCard";
 
-function Timeline({ items }) {
+function Timeline({
+  items,
+  eliminarItem,
+}) {
   return (
     <main className="timeline">
-      <DayCard items={items} />
+      <DayCard
+        items={items}
+        eliminarItem={eliminarItem}
+      />
     </main>
   );
 }

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import Topbar from "./components/Topbar";
 import Filters from "./components/Filters";
@@ -10,65 +10,108 @@ import FormularioItem from "./components/FormularioItem";
 function App() {
   const [view, setView] = useState("timeline");
 
-  const [items, setItems] = useState([
-    {
-      id: crypto.randomUUID(),
+  const [items, setItems] = useState(() => {
+    try {
+      const guardados =
+        localStorage.getItem("items");
 
-      nombre: "Pecho y triceps",
+      return guardados
+        ? JSON.parse(guardados)
+        : [
+            {
+              id: crypto.randomUUID(),
 
-      categoriaId: "fuerza",
+              nombre: "Pecho y triceps",
 
-      estado: "completado",
+              categoriaId: "fuerza",
 
-      puntuacion: 9,
+              estado: "completado",
 
-      fechaRegistro: new Date().toISOString(),
+              puntuacion: 9,
 
-      fechaActividad: new Date().toISOString(),
+              fechaRegistro:
+                new Date().toISOString(),
 
-      notas: "Buen rendimiento en press banca",
+              fechaActividad:
+                new Date().toISOString(),
 
-      atributos: {
-        duracion: 90,
-        ejercicios: ["Press banca", "Press inclinado"],
-      },
+              notas:
+                "Buen rendimiento en press banca",
 
-      activo: true,
-    },
+              atributos: {
+                duracion: 90,
 
-    {
-      id: crypto.randomUUID(),
+                ejercicios: [
+                  "Press banca",
+                  "Press inclinado",
+                ],
+              },
 
-      nombre: "Cardio intenso",
+              activo: true,
+            },
 
-      categoriaId: "cardio",
+            {
+              id: crypto.randomUUID(),
 
-      estado: "pendiente",
+              nombre: "Cardio intenso",
 
-      puntuacion: 7,
+              categoriaId: "cardio",
 
-      fechaRegistro: new Date().toISOString(),
+              estado: "pendiente",
 
-      fechaActividad: new Date().toISOString(),
+              puntuacion: 7,
 
-      notas: "Falta mejorar resistencia",
+              fechaRegistro:
+                new Date().toISOString(),
 
-      atributos: {
-        duracion: 45,
-        ejercicios: ["Caminadora", "Bicicleta"],
-      },
+              fechaActividad:
+                new Date().toISOString(),
 
-      activo: true,
-    },
-  ]);
+              notas:
+                "Falta mejorar resistencia",
+
+              atributos: {
+                duracion: 45,
+
+                ejercicios: [
+                  "Caminadora",
+                  "Bicicleta",
+                ],
+              },
+
+              activo: true,
+            },
+          ];
+    } catch {
+      return [];
+    }
+  });
+
+  useEffect(() => {
+    localStorage.setItem(
+      "items",
+      JSON.stringify(items)
+    );
+  }, [items]);
 
   const addItem = (nuevoItem) => {
     setItems([...items, nuevoItem]);
   };
 
+  const eliminarItem = (id) => {
+    const nuevosItems = items.filter(
+      (item) => item.id !== id
+    );
+
+    setItems(nuevosItems);
+  };
+
   return (
     <div className="app">
-      <Topbar view={view} setView={setView} />
+      <Topbar
+        view={view}
+        setView={setView}
+      />
 
       <Filters />
 
@@ -77,7 +120,10 @@ function App() {
       <FormularioItem addItem={addItem} />
 
       {view === "timeline" ? (
-        <Timeline items={items} />
+        <Timeline
+          items={items}
+          eliminarItem={eliminarItem}
+        />
       ) : (
         <CalendarView />
       )}

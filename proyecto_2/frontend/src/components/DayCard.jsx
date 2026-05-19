@@ -1,6 +1,9 @@
 import ActivityCard from "./ActivityCard";
 
-function DayCard({ items }) {
+function DayCard({
+  items,
+  eliminarItem,
+}) {
   return (
     <section className="day-card">
       <h2>Sesiones recientes</h2>
@@ -10,6 +13,7 @@ function DayCard({ items }) {
           <ActivityCard
             key={item.id}
             item={item}
+            eliminarItem={eliminarItem}
           />
         ))}
       </div>
