@@ -3,6 +3,7 @@ import ActivityCard from "./ActivityCard";
 function DayCard({
   items,
   eliminarItem,
+  editarItem,
 }) {
   return (
     <section className="day-card">
@@ -14,6 +15,7 @@ function DayCard({
             key={item.id}
             item={item}
             eliminarItem={eliminarItem}
+            editarItem={editarItem}
           />
         ))}
       </div>

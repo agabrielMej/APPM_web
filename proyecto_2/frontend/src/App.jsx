@@ -45,6 +45,25 @@ function App() {
 
     setItems(nuevosItems);
   };
+  const editarItem = (
+  id,
+  nuevosDatos
+) => {
+  const nuevosItems = items.map(
+    (item) => {
+      if (item.id === id) {
+        return {
+          ...item,
+          ...nuevosDatos,
+        };
+      }
+
+      return item;
+    }
+  );
+
+  setItems(nuevosItems);
+};
 
   const itemsFiltrados =
     filtro === "todos"
@@ -74,6 +93,8 @@ function App() {
         <Timeline
           items={itemsFiltrados}
           eliminarItem={eliminarItem}
+          editarItem={editarItem}
+
         />
       ) : (
         <CalendarView items={items} />

@@ -18,6 +18,13 @@ function FormularioItem({ addItem }) {
   const [duracion, setDuracion] =
     useState("");
 
+  const [fecha, setFecha] =
+    useState(
+      new Date()
+        .toISOString()
+        .split("T")[0]
+    );
+
   const [ejercicios, setEjercicios] =
     useState("");
 
@@ -37,9 +44,11 @@ function FormularioItem({ addItem }) {
         ? Number(puntuacion)
         : null,
 
-      fechaRegistro: new Date().toISOString(),
+      fechaRegistro:
+        new Date(fecha).toISOString(),
 
-      fechaActividad: new Date().toISOString(),
+      fechaActividad:
+        new Date(fecha).toISOString(),
 
       notas,
 
@@ -62,6 +71,11 @@ function FormularioItem({ addItem }) {
     setPuntuacion("");
     setNotas("");
     setDuracion("");
+    setFecha(
+      new Date()
+        .toISOString()
+        .split("T")[0]
+    );
     setEjercicios("");
   };
 
@@ -113,6 +127,10 @@ function FormularioItem({ addItem }) {
         <option value="completado">
           Completado
         </option>
+
+        <option value="incompleto">
+          Incompleto
+        </option>
       </select>
 
       <input
@@ -130,6 +148,14 @@ function FormularioItem({ addItem }) {
         value={duracion}
         onChange={(e) =>
           setDuracion(e.target.value)
+        }
+      />
+
+      <input
+        type="date"
+        value={fecha}
+        onChange={(e) =>
+          setFecha(e.target.value)
         }
       />
 
