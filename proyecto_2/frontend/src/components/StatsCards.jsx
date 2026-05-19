@@ -2,23 +2,23 @@ function StatsCards() {
   return (
     <section className="stats-container">
       <div className="stat-card">
-        <h3>Habitos completados</h3>
+        <h3>Sesiones completadas</h3>
         <p>5</p>
       </div>
 
       <div className="stat-card">
-        <h3>Entrenamientos</h3>
-        <p>3</p>
+        <h3>Minutos entrenados</h3>
+        <p>320</p>
       </div>
 
       <div className="stat-card">
-        <h3>Juegos registrados</h3>
-        <p>2</p>
-      </div>
-
-      <div className="stat-card">
-        <h3>Actividades pendientes</h3>
+        <h3>Categorias activas</h3>
         <p>4</p>
+      </div>
+
+      <div className="stat-card">
+        <h3>Sesiones pendientes</h3>
+        <p>2</p>
       </div>
     </section>
   );

@@ -1,13 +1,40 @@
-function ActivityCard({ title, category, status }) {
+function ActivityCard({ item }) {
   return (
-    <article className={`activity-card ${category}`}>
+    <article
+      className={`activity-card ${item.categoriaId}`}
+    >
       <div>
-        <h3>{title}</h3>
-        <p>{category}</p>
+        <h3>{item.nombre}</h3>
+
+        <p>
+          Categoria: {item.categoriaId}
+        </p>
+
+        <p>
+          Duracion:{" "}
+          {item.atributos.duracion} min
+        </p>
+
+        <p>
+          Puntuacion:{" "}
+          {item.puntuacion ?? "Sin puntuacion"}
+        </p>
+
+        <p>
+          Ejercicios:
+          {" "}
+          {item.atributos.ejercicios.join(", ")}
+        </p>
+
+        <p>
+          {item.notas}
+        </p>
       </div>
 
-      <span className={`status ${status}`}>
-        {status}
+      <span
+        className={`status ${item.estado}`}
+      >
+        {item.estado}
       </span>
     </article>
   );

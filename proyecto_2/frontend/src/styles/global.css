@@ -15,17 +15,6 @@ body {
   padding: 30px;
 }
 
-.header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 30px;
-}
-
-.header h1 {
-  font-size: 2rem;
-}
-
 .search-input {
   padding: 12px;
   width: 250px;
@@ -34,10 +23,16 @@ body {
   outline: none;
 }
 
+.filters-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
 .filters {
   display: flex;
   gap: 10px;
-  margin-bottom: 30px;
 }
 
 .filters button {
@@ -140,4 +135,110 @@ body {
 
 .actividades {
   border-left: 5px solid #f59e0b;
+}
+
+.topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid #334155;
+}
+
+.logo h2 {
+  font-size: 1.5rem;
+}
+
+.view-buttons {
+  display: flex;
+  gap: 10px;
+}
+
+.view-buttons button {
+  padding: 10px 16px;
+  border: none;
+  border-radius: 10px;
+  background: #1e293b;
+  color: white;
+  cursor: pointer;
+}
+
+.view-buttons button:hover {
+  background: #334155;
+}
+
+.active-view {
+  background: #2563eb !important;
+}
+
+.calendar-view {
+  margin-top: 30px;
+}
+
+.calendar-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 15px;
+}
+
+.calendar-day {
+  height: 120px;
+  background: #1e293b;
+  border-radius: 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.5rem;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.calendar-day:hover {
+  transform: translateY(-4px);
+}
+
+.active-day {
+  border: 3px solid #2563eb;
+}
+
+.formulario {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  margin-bottom: 30px;
+  background: #1e293b;
+  padding: 20px;
+  border-radius: 15px;
+}
+
+.formulario input,
+.formulario select {
+  flex: 1;
+  min-width: 180px;
+
+  padding: 12px;
+
+  border: none;
+  border-radius: 10px;
+  outline: none;
+}
+
+.formulario button {
+  min-width: 180px;
+
+  background: #2563eb;
+  color: white;
+
+  border: none;
+
+  padding: 12px 18px;
+
+  border-radius: 10px;
+
+  cursor: pointer;
+}
+
+.formulario button:hover {
+  background: #1d4ed8;
 }

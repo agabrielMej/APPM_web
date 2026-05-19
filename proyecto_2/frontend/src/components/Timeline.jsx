@@ -1,10 +1,9 @@
 import DayCard from "./DayCard";
 
-function Timeline() {
+function Timeline({ items }) {
   return (
     <main className="timeline">
-      <DayCard />
-      <DayCard />
+      <DayCard items={items} />
     </main>
   );
 }

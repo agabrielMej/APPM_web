@@ -1,28 +1,17 @@
 import ActivityCard from "./ActivityCard";
 
-function DayCard() {
+function DayCard({ items }) {
   return (
     <section className="day-card">
-      <h2>19 Mayo 2026</h2>
+      <h2>Sesiones recientes</h2>
 
       <div className="activities">
-        <ActivityCard
-          title="Rutina pecho y triceps"
-          category="gym"
-          status="completado"
-        />
-
-        <ActivityCard
-          title="Elden Ring"
-          category="videojuegos"
-          status="pendiente"
-        />
-
-        <ActivityCard
-          title="Estudiar Backend"
-          category="actividades"
-          status="pendiente"
-        />
+        {items.map((item) => (
+          <ActivityCard
+            key={item.id}
+            item={item}
+          />
+        ))}
       </div>
     </section>
   );
