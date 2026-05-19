@@ -1,0 +1,174 @@
+# GymLog
+
+Aplicación web desarrollada con React, Express y SQLite para registrar sesiones de entrenamiento físico.
+
+El proyecto permite:
+
+- Crear sesiones de entrenamiento
+- Editar sesiones
+- Eliminar sesiones
+- Guardar datos en LocalStorage
+- Gestionar categorías de entrenamiento
+- Visualizar sesiones en timeline y calendario
+- Persistir datos usando SQLite en el backend
+
+---
+
+# Tecnologías utilizadas
+
+## Frontend
+- React 18
+- Vite
+- CSS puro
+- useState
+- useEffect
+- LocalStorage
+
+## Backend
+- Node.js
+- Express
+- SQLite
+- sqlite3
+- CORS
+- dotenv
+
+---
+
+# Estructura del proyecto
+
+```bash
+proyecto_2/
+│
+├── frontend/
+│
+├── backend/
+│
+├── scrinshots/
+│
+└── README.md
+```
+
+---
+
+# Funcionalidades principales
+
+## Frontend
+- CRUD completo de sesiones
+- Persistencia con LocalStorage
+- Filtros por categoría
+- Calendario visual
+- Estadísticas dinámicas
+- Edición de sesiones
+- Eliminación de sesiones
+
+## Backend
+- API REST con Express
+- Base de datos SQLite
+- Tabla items
+- Tabla registros
+- Endpoints CRUD
+
+---
+
+# Endpoints disponibles
+
+## Obtener sesiones
+
+```http
+GET /api/items
+```
+
+## Crear sesión
+
+```http
+POST /api/items
+```
+
+## Editar sesión
+
+```http
+PUT /api/items/:id
+```
+
+## Archivar sesión
+
+```http
+DELETE /api/items/:id
+```
+
+## Crear registro
+
+```http
+POST /api/items/:id/registro
+```
+
+---
+
+# Cómo ejecutar el frontend
+
+```bash
+cd frontend
+npm install
+npm run dev
+```
+
+Frontend:
+
+```text
+http://localhost:5173
+```
+
+---
+
+# Cómo ejecutar el backend
+
+```bash
+cd backend
+npm install
+npm run dev
+```
+
+Backend:
+
+```text
+http://localhost:3001
+```
+
+---
+
+# Capturas del proyecto
+
+## Vista principal de sesiones
+
+![Sesiones](./scrinshots/image1.png)
+
+---
+
+## Vista general del sistema
+
+![Vista General](./scrinshots/image2_vista_general.png)
+
+---
+
+## Vista calendario
+
+![Calendario](./scrinshots/image3_calendario.png)
+
+---
+
+# Datos reales utilizados
+
+Las sesiones registradas corresponden a entrenamientos reales realizados durante el desarrollo del proyecto.
+
+Ejemplos:
+- Pecho y tríceps
+- Cardio intenso
+- Flexibilidad espalda baja
+
+---
+
+# Autor
+
+- Abner Gabriel
+- Universidad del Valle de Guatemala
+- Sistemas y Tecnologías Web
