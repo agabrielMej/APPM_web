@@ -1,3 +1,19 @@
+body[data-theme="claro"] {
+  --color-fondo: #f7f7f8;
+  --color-superficie: #ffffff;
+  --color-texto: #1a1a1a;
+  --color-acento: #4f46e5;
+  --color-borde: #e5e7eb;
+}
+
+body[data-theme="oscuro"] {
+  --color-fondo: #0f172a;
+  --color-superficie: #1e293b;
+  --color-texto: #f1f5f9;
+  --color-acento: #818cf8;
+  --color-borde: #334155;
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -5,9 +21,12 @@
 }
 
 body {
-  background: #0f172a;
-  color: white;
+  background: var(--color-fondo);
+  color: var(--color-texto);
   font-family: Arial, Helvetica, sans-serif;
+  transition:
+    background 0.2s,
+    color 0.2s;
 }
 
 .app {
@@ -39,13 +58,13 @@ body {
   padding: 10px 16px;
   border: none;
   border-radius: 10px;
-  background: #1e293b;
-  color: white;
+  background: var(--color-superficie);
+  color: var(--color-texto);
   cursor: pointer;
 }
 
 .filters button:hover {
-  background: #334155;
+  opacity: 0.9;
 }
 
 .stats-container {
@@ -56,9 +75,11 @@ body {
 }
 
 .stat-card {
-  background: #1e293b;
+  background: var(--color-superficie);
   padding: 20px;
   border-radius: 15px;
+  border: 1px solid
+    var(--color-borde);
 }
 
 .stat-card h3 {
@@ -78,9 +99,11 @@ body {
 }
 
 .day-card {
-  background: #1e293b;
+  background: var(--color-superficie);
   padding: 25px;
   border-radius: 20px;
+  border: 1px solid
+    var(--color-borde);
 }
 
 .day-card h2 {
@@ -97,9 +120,11 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background: #334155;
+  background: var(--color-superficie);
   padding: 15px;
   border-radius: 12px;
+  border: 1px solid
+    var(--color-borde);
 }
 
 .activity-card h3 {
@@ -111,6 +136,7 @@ body {
   border-radius: 10px;
   font-size: 0.9rem;
   text-transform: capitalize;
+  color: white;
 }
 
 .completado {
@@ -121,20 +147,28 @@ body {
   background: #92400e;
 }
 
-.gym {
-  border-left: 5px solid #ef4444;
+.incompleto {
+  background: #991b1b;
 }
 
-.videojuegos {
-  border-left: 5px solid #8b5cf6;
+.fuerza {
+  border-left: 5px solid
+    #ef4444;
 }
 
-.habitos {
-  border-left: 5px solid #22c55e;
+.cardio {
+  border-left: 5px solid
+    #3b82f6;
 }
 
-.actividades {
-  border-left: 5px solid #f59e0b;
+.flexibilidad {
+  border-left: 5px solid
+    #22c55e;
+}
+
+.deportes {
+  border-left: 5px solid
+    #f59e0b;
 }
 
 .topbar {
@@ -143,7 +177,8 @@ body {
   align-items: center;
   margin-bottom: 20px;
   padding-bottom: 20px;
-  border-bottom: 1px solid #334155;
+  border-bottom: 1px solid
+    var(--color-borde);
 }
 
 .logo h2 {
@@ -159,17 +194,18 @@ body {
   padding: 10px 16px;
   border: none;
   border-radius: 10px;
-  background: #1e293b;
-  color: white;
+  background: var(--color-superficie);
+  color: var(--color-texto);
   cursor: pointer;
 }
 
 .view-buttons button:hover {
-  background: #334155;
+  opacity: 0.9;
 }
 
 .active-view {
-  background: #2563eb !important;
+  background: var(--color-acento) !important;
+  color: white !important;
 }
 
 .calendar-view {
@@ -184,12 +220,14 @@ body {
 
 .calendar-day {
   height: 120px;
-  background: #1e293b;
+  background: var(--color-superficie);
   border-radius: 15px;
+  border: 1px solid
+    var(--color-borde);
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 1.5rem;
+  font-size: 1rem;
   cursor: pointer;
   transition: 0.2s;
 }
@@ -199,7 +237,8 @@ body {
 }
 
 .active-day {
-  border: 3px solid #2563eb;
+  border: 3px solid
+    var(--color-acento);
 }
 
 .formulario {
@@ -207,18 +246,18 @@ body {
   flex-wrap: wrap;
   gap: 15px;
   margin-bottom: 30px;
-  background: #1e293b;
+  background: var(--color-superficie);
   padding: 20px;
   border-radius: 15px;
+  border: 1px solid
+    var(--color-borde);
 }
 
 .formulario input,
 .formulario select {
   flex: 1;
   min-width: 180px;
-
   padding: 12px;
-
   border: none;
   border-radius: 10px;
   outline: none;
@@ -226,21 +265,16 @@ body {
 
 .formulario button {
   min-width: 180px;
-
-  background: #2563eb;
+  background: var(--color-acento);
   color: white;
-
   border: none;
-
   padding: 12px 18px;
-
   border-radius: 10px;
-
   cursor: pointer;
 }
 
 .formulario button:hover {
-  background: #1d4ed8;
+  opacity: 0.9;
 }
 
 .card-actions {
@@ -287,8 +321,4 @@ body {
 
 .save-btn:hover {
   background: #15803d;
-}
-
-.incompleto {
-  background: #991b1b;
 }

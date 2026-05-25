@@ -4,6 +4,9 @@ function Topbar({
 
   modo,
   setModo,
+
+  tema,
+  toggleTema,
 }) {
   return (
     <nav className="topbar">
@@ -70,6 +73,16 @@ function Topbar({
           }
         >
           API
+        </button>
+
+        <button
+          onClick={
+            toggleTema
+          }
+        >
+          {tema === "oscuro"
+            ? "Claro"
+            : "Oscuro"}
         </button>
       </div>
     </nav>

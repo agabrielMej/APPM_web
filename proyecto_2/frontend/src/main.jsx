@@ -10,12 +10,18 @@ import {
   StorageProvider,
 } from "./context/StorageProvider";
 
+import {
+  ThemeProvider,
+} from "./context/ThemeProvider";
+
 ReactDOM.createRoot(
   document.getElementById("root")
 ).render(
   <React.StrictMode>
-    <StorageProvider>
-      <App />
-    </StorageProvider>
+    <ThemeProvider>
+      <StorageProvider>
+        <App />
+      </StorageProvider>
+    </ThemeProvider>
   </React.StrictMode>
 );

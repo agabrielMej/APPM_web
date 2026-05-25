@@ -1,5 +1,6 @@
 import {
   useContext,
+  useEffect,
   useState,
 } from "react";
 
@@ -14,12 +15,23 @@ import {
   StorageContext,
 } from "./context/StorageProvider";
 
+import {
+  ThemeContext,
+} from "./context/ThemeProvider";
+
 function App() {
   const [view, setView] =
     useState("timeline");
 
   const [filtro, setFiltro] =
     useState("todos");
+
+  const {
+    tema,
+    toggleTema,
+    } = useContext(
+    ThemeContext
+  );
 
   const {
     modo,
@@ -49,6 +61,8 @@ function App() {
         setView={setView}
         modo={modo}
         setModo={setModo}
+        tema={tema}
+        toggleTema={toggleTema}
       />
 
       <Filters
