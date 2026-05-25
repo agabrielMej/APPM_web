@@ -1,4 +1,7 @@
-import { useEffect, useState } from "react";
+import {
+  useContext,
+  useState,
+} from "react";
 
 import Topbar from "./components/Topbar";
 import Filters from "./components/Filters";
@@ -7,6 +10,10 @@ import Timeline from "./components/Timeline";
 import CalendarView from "./components/CalendarView";
 import FormularioItem from "./components/FormularioItem";
 
+import {
+  StorageContext,
+} from "./context/StorageProvider";
+
 function App() {
   const [view, setView] =
     useState("timeline");
@@ -14,56 +21,18 @@ function App() {
   const [filtro, setFiltro] =
     useState("todos");
 
-  const [items, setItems] = useState(() => {
-    try {
-      const guardados =
-        localStorage.getItem("items");
+  const {
+    modo,
+    setModo,
 
-      return guardados
-        ? JSON.parse(guardados)
-        : [];
-    } catch {
-      return [];
-    }
-  });
+    items,
 
-  useEffect(() => {
-    localStorage.setItem(
-      "items",
-      JSON.stringify(items)
-    );
-  }, [items]);
+    guardarItem,
 
-  const addItem = (nuevoItem) => {
-    setItems([...items, nuevoItem]);
-  };
-
-  const eliminarItem = (id) => {
-    const nuevosItems = items.filter(
-      (item) => item.id !== id
-    );
-
-    setItems(nuevosItems);
-  };
-  const editarItem = (
-  id,
-  nuevosDatos
-) => {
-  const nuevosItems = items.map(
-    (item) => {
-      if (item.id === id) {
-        return {
-          ...item,
-          ...nuevosDatos,
-        };
-      }
-
-      return item;
-    }
+    eliminarItem,
+  } = useContext(
+    StorageContext
   );
-
-  setItems(nuevosItems);
-};
 
   const itemsFiltrados =
     filtro === "todos"
@@ -78,6 +47,8 @@ function App() {
       <Topbar
         view={view}
         setView={setView}
+        modo={modo}
+        setModo={setModo}
       />
 
       <Filters
@@ -85,19 +56,25 @@ function App() {
         setFiltro={setFiltro}
       />
 
-      <StatsCards items={items} />
+      <StatsCards
+        items={items}
+      />
 
-      <FormularioItem addItem={addItem} />
+      <FormularioItem
+        addItem={guardarItem}
+      />
 
       {view === "timeline" ? (
         <Timeline
           items={itemsFiltrados}
-          eliminarItem={eliminarItem}
-          editarItem={editarItem}
-
+          eliminarItem={
+            eliminarItem
+          }
         />
       ) : (
-        <CalendarView items={items} />
+        <CalendarView
+          items={items}
+        />
       )}
     </div>
   );

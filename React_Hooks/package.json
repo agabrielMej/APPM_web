@@ -2,6 +2,7 @@
   "name": "react_hooks",
   "version": "0.1.0",
   "private": true,
+  "homepage": "/abner231134/APPM_web/react_hooks",
   "dependencies": {
     "@testing-library/dom": "^10.4.1",
     "@testing-library/jest-dom": "^6.9.1",
