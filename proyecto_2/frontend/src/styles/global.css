@@ -333,3 +333,21 @@ body {
     3px solid
     var(--color-acento);
 }
+
+.edit-form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.edit-form select,
+.edit-form textarea {
+  padding: 10px;
+  border-radius: 10px;
+  border: none;
+}
+
+.edit-form textarea {
+  min-height: 100px;
+  resize: vertical;
+}

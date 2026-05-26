@@ -53,12 +53,6 @@ export function StorageProvider({
             `${API_URL}/api/items`
           );
 
-          if (!res.ok) {
-            throw new Error(
-              `HTTP ${res.status}`
-            );
-          }
-
           const data =
             await res.json();
 
@@ -109,7 +103,7 @@ export function StorageProvider({
           }
         );
 
-        obtenerItems();
+        await obtenerItems();
       } else {
         const nuevosItems = [
           ...items,
@@ -142,7 +136,7 @@ export function StorageProvider({
           }
         );
 
-        obtenerItems();
+        await obtenerItems();
       } else {
         const nuevosItems =
           items.filter(
@@ -164,9 +158,61 @@ export function StorageProvider({
     }
   };
 
+  const editarItem = async (
+    id,
+    nuevosDatos
+  ) => {
+    try {
+      if (modo === "api") {
+        await fetch(
+          `${API_URL}/api/items/${id}`,
+          {
+            method: "PUT",
+
+            headers: {
+              "Content-Type":
+                "application/json",
+            },
+
+            body: JSON.stringify(
+              nuevosDatos
+            ),
+          }
+        );
+
+        await obtenerItems();
+      } else {
+        const nuevosItems =
+          items.map((item) => {
+            if (
+              item.id === id
+            ) {
+              return {
+                ...item,
+                ...nuevosDatos,
+              };
+            }
+
+            return item;
+          });
+
+        setItems(nuevosItems);
+
+        localStorage.setItem(
+          "items",
+          JSON.stringify(
+            nuevosItems
+          )
+        );
+      }
+    } catch (err) {
+      setError(err.message);
+    }
+  };
+
   useEffect(() => {
     obtenerItems();
-  }, [obtenerItems]);
+  }, [modo]);
 
   return (
     <StorageContext.Provider
@@ -182,6 +228,7 @@ export function StorageProvider({
         obtenerItems,
         guardarItem,
         eliminarItem,
+        editarItem,
       }}
     >
       {children}

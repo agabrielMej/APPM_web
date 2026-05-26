@@ -1,4 +1,11 @@
-import { useState } from "react";
+import {
+  useContext,
+  useState,
+} from "react";
+
+import {
+  StorageContext,
+} from "../context/StorageProvider";
 
 import {
   CATEGORIAS,
@@ -7,12 +14,16 @@ import {
 function ActivityCard({
   item,
   eliminarItem,
-  editarItem,
 }) {
   const categoria =
     CATEGORIAS.find(
       (cat) =>
         cat.id === item.categoriaId
+    );
+
+  const { editarItem } =
+    useContext(
+      StorageContext
     );
 
   const [editando, setEditando] =
@@ -38,46 +49,10 @@ function ActivityCard({
       className={`activity-card ${item.categoriaId}`}
     >
       <div>
-        <h3>{item.nombre}</h3>
-
-        <p>
-          Categoria:
-          {" "}
-          {categoria?.nombre}
-        </p>
-
-        <p>
-          Fecha:
-          {" "}
-          {item.fechaRegistro.split(
-            "T"
-          )[0]}
-        </p>
-
-        <p>
-          Duracion:
-          {" "}
-          {item.atributos.duracion}
-          {" "}min
-        </p>
-
-        <p>
-          Puntuacion:
-          {" "}
-          {item.puntuacion ??
-            "Sin puntuacion"}
-        </p>
-
-        <p>
-          Ejercicios:
-          {" "}
-          {item.atributos.ejercicios.join(
-            ", "
-          )}
-        </p>
-
         {editando ? (
-          <>
+          <div className="edit-form">
+            <h3>{item.nombre}</h3>
+
             <select
               value={estado}
               onChange={(e) =>
@@ -99,8 +74,7 @@ function ActivityCard({
               </option>
             </select>
 
-            <input
-              type="text"
+            <textarea
               value={notas}
               onChange={(e) =>
                 setNotas(
@@ -117,17 +91,57 @@ function ActivityCard({
             >
               Guardar
             </button>
-          </>
+          </div>
         ) : (
-          <p>{item.notas}</p>
+          <>
+            <h3>{item.nombre}</h3>
+
+            <p>
+              Categoria:
+              {" "}
+              {categoria?.nombre}
+            </p>
+
+            <p>
+              Fecha:
+              {" "}
+              {item.fechaRegistro.split(
+                "T"
+              )[0]}
+            </p>
+
+            <p>
+              Duracion:
+              {" "}
+              {item.atributos
+                .duracion}
+              {" "}min
+            </p>
+
+            <p>
+              Puntuacion:
+              {" "}
+              {item.puntuacion}
+            </p>
+
+            <p>
+              Ejercicios:
+              {" "}
+              {item.atributos.ejercicios.join(
+                ", "
+              )}
+            </p>
+
+            <p>{item.notas}</p>
+          </>
         )}
       </div>
 
       <div className="card-actions">
         <span
-          className={`status ${estado}`}
+          className={`status ${item.estado}`}
         >
-          {estado}
+          {item.estado}
         </span>
 
         <button

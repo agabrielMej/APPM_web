@@ -8,6 +8,12 @@ function Filters({
     <div className="filters-container">
       <div className="filters">
         <button
+          className={
+            filtro === "todos"
+              ? "active-view"
+              : ""
+          }
+
           onClick={() =>
             setFiltro("todos")
           }
@@ -19,6 +25,13 @@ function Filters({
           (categoria) => (
             <button
               key={categoria.id}
+
+              className={
+                filtro ===
+                categoria.id
+                  ? "active-view"
+                  : ""
+              }
 
               onClick={() =>
                 setFiltro(
