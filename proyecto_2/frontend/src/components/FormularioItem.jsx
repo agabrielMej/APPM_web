@@ -1,22 +1,48 @@
-import { useState } from "react";
+import {
+  useContext,
+  useEffect,
+  useRef,
+  useState,
+} from "react";
 
-function FormularioItem({ addItem }) {
-  const [nombre, setNombre] = useState("");
+import {
+  ThemeContext,
+} from "../context/ThemeProvider";
 
-  const [categoriaId, setCategoriaId] =
-    useState("fuerza");
+function FormularioItem({
+  addItem,
+}) {
+  const { toggleTema } =
+    useContext(ThemeContext);
+
+  const [nombre, setNombre] =
+    useState("");
+
+  const [
+    categoriaId,
+    setCategoriaId,
+  ] = useState("fuerza");
 
   const [estado, setEstado] =
     useState("pendiente");
 
-  const [puntuacion, setPuntuacion] =
-    useState("");
+  const [
+    puntuacion,
+    setPuntuacion,
+  ] = useState("");
 
   const [notas, setNotas] =
     useState("");
 
-  const [duracion, setDuracion] =
-    useState("");
+  const [
+    duracion,
+    setDuracion,
+  ] = useState("");
+
+  const [
+    ejercicios,
+    setEjercicios,
+  ] = useState("");
 
   const [fecha, setFecha] =
     useState(
@@ -25,8 +51,58 @@ function FormularioItem({ addItem }) {
         .split("T")[0]
     );
 
-  const [ejercicios, setEjercicios] =
-    useState("");
+  const inputRef =
+    useRef(null);
+
+  const intervalRef =
+    useRef(null);
+
+  useEffect(() => {
+    intervalRef.current =
+      setInterval(() => {
+        console.log(
+          "Intervalo activo"
+        );
+      }, 10000);
+
+    return () => {
+      clearInterval(
+        intervalRef.current
+      );
+    };
+  }, []);
+
+  useEffect(() => {
+    const handler = (e) => {
+      if (
+        e.ctrlKey &&
+        e.key === "n"
+      ) {
+        e.preventDefault();
+
+        inputRef.current.focus();
+      }
+
+      if (
+        e.key.toLowerCase() ===
+        "t"
+      ) {
+        toggleTema();
+      }
+    };
+
+    window.addEventListener(
+      "keydown",
+      handler
+    );
+
+    return () => {
+      window.removeEventListener(
+        "keydown",
+        handler
+      );
+    };
+  }, [toggleTema]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -53,11 +129,15 @@ function FormularioItem({ addItem }) {
       notas,
 
       atributos: {
-        duracion: Number(duracion),
+        duracion:
+          Number(duracion),
 
-        ejercicios: ejercicios
-          .split(",")
-          .map((e) => e.trim()),
+        ejercicios:
+          ejercicios
+            .split(",")
+            .map((e) =>
+              e.trim()
+            ),
       },
 
       activo: true,
@@ -66,27 +146,40 @@ function FormularioItem({ addItem }) {
     addItem(nuevoItem);
 
     setNombre("");
-    setCategoriaId("fuerza");
-    setEstado("pendiente");
-    setPuntuacion("");
-    setNotas("");
-    setDuracion("");
-    setFecha(
-      new Date()
-        .toISOString()
-        .split("T")[0]
+
+    setCategoriaId(
+      "fuerza"
     );
+
+    setEstado(
+      "pendiente"
+    );
+
+    setPuntuacion("");
+
+    setNotas("");
+
+    setDuracion("");
+
     setEjercicios("");
+
+    inputRef.current.focus();
   };
 
   return (
-    <form className="formulario" onSubmit={handleSubmit}>
+    <form
+      className="formulario"
+      onSubmit={handleSubmit}
+    >
       <input
+        ref={inputRef}
         type="text"
         placeholder="Nombre de la sesion"
         value={nombre}
         onChange={(e) =>
-          setNombre(e.target.value)
+          setNombre(
+            e.target.value
+          )
         }
         required
       />
@@ -94,7 +187,9 @@ function FormularioItem({ addItem }) {
       <select
         value={categoriaId}
         onChange={(e) =>
-          setCategoriaId(e.target.value)
+          setCategoriaId(
+            e.target.value
+          )
         }
       >
         <option value="fuerza">
@@ -117,7 +212,9 @@ function FormularioItem({ addItem }) {
       <select
         value={estado}
         onChange={(e) =>
-          setEstado(e.target.value)
+          setEstado(
+            e.target.value
+          )
         }
       >
         <option value="pendiente">
@@ -138,7 +235,9 @@ function FormularioItem({ addItem }) {
         placeholder="Puntuacion"
         value={puntuacion}
         onChange={(e) =>
-          setPuntuacion(e.target.value)
+          setPuntuacion(
+            e.target.value
+          )
         }
       />
 
@@ -147,7 +246,9 @@ function FormularioItem({ addItem }) {
         placeholder="Duracion"
         value={duracion}
         onChange={(e) =>
-          setDuracion(e.target.value)
+          setDuracion(
+            e.target.value
+          )
         }
       />
 
@@ -155,7 +256,9 @@ function FormularioItem({ addItem }) {
         type="date"
         value={fecha}
         onChange={(e) =>
-          setFecha(e.target.value)
+          setFecha(
+            e.target.value
+          )
         }
       />
 
@@ -164,7 +267,9 @@ function FormularioItem({ addItem }) {
         placeholder="Ejercicios separados por coma"
         value={ejercicios}
         onChange={(e) =>
-          setEjercicios(e.target.value)
+          setEjercicios(
+            e.target.value
+          )
         }
       />
 
@@ -173,7 +278,9 @@ function FormularioItem({ addItem }) {
         placeholder="Notas"
         value={notas}
         onChange={(e) =>
-          setNotas(e.target.value)
+          setNotas(
+            e.target.value
+          )
         }
       />
 

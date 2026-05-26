@@ -1,3 +1,5 @@
+import { CATEGORIAS } from "../utils/categorias";
+
 function Filters({
   filtro,
   setFiltro,
@@ -13,37 +15,21 @@ function Filters({
           Todos
         </button>
 
-        <button
-          onClick={() =>
-            setFiltro("fuerza")
-          }
-        >
-          Fuerza
-        </button>
+        {CATEGORIAS.map(
+          (categoria) => (
+            <button
+              key={categoria.id}
 
-        <button
-          onClick={() =>
-            setFiltro("cardio")
-          }
-        >
-          Cardio
-        </button>
-
-        <button
-          onClick={() =>
-            setFiltro("flexibilidad")
-          }
-        >
-          Flexibilidad
-        </button>
-
-        <button
-          onClick={() =>
-            setFiltro("deportes")
-          }
-        >
-          Deportes
-        </button>
+              onClick={() =>
+                setFiltro(
+                  categoria.id
+                )
+              }
+            >
+              {categoria.nombre}
+            </button>
+          )
+        )}
       </div>
 
       <input

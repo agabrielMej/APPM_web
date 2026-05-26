@@ -22,4 +22,10 @@ export const CATEGORIAS = [
     nombre: "Deportes",
     color: "#f59e0b",
   },
+
+  {
+    id: "movilidad",
+    nombre: "Movilidad",
+    color: "#a855f7",
+  },
 ];

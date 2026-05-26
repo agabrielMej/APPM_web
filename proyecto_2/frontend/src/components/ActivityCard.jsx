@@ -1,10 +1,20 @@
 import { useState } from "react";
 
+import {
+  CATEGORIAS,
+} from "../utils/categorias";
+
 function ActivityCard({
   item,
   eliminarItem,
   editarItem,
 }) {
+  const categoria =
+    CATEGORIAS.find(
+      (cat) =>
+        cat.id === item.categoriaId
+    );
+
   const [editando, setEditando] =
     useState(false);
 
@@ -31,7 +41,9 @@ function ActivityCard({
         <h3>{item.nombre}</h3>
 
         <p>
-          Categoria: {item.categoriaId}
+          Categoria:
+          {" "}
+          {categoria?.nombre}
         </p>
 
         <p>
