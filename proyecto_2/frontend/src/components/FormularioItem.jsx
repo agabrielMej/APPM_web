@@ -58,34 +58,28 @@ function FormularioItem({
     useRef(null);
 
   useEffect(() => {
-    intervalRef.current =
-      setInterval(() => {
-        console.log(
-          "Intervalo activo"
-        );
-      }, 10000);
-
-    return () => {
-      clearInterval(
-        intervalRef.current
-      );
-    };
-  }, []);
-
-  useEffect(() => {
     const handler = (e) => {
+      const tag =
+        document.activeElement.tagName;
+
+      const escribiendo =
+        tag === "INPUT" ||
+        tag === "TEXTAREA" ||
+        tag === "SELECT";
+
       if (
-        e.ctrlKey &&
-        e.key === "n"
+        e.altKey &&
+        e.key.toLowerCase() === "n"
       ) {
         e.preventDefault();
-
+        e.stopPropagation();
         inputRef.current.focus();
+        return;
       }
 
       if (
-        e.key.toLowerCase() ===
-        "t"
+        !escribiendo &&
+        e.key.toLowerCase() === "t"
       ) {
         toggleTema();
       }

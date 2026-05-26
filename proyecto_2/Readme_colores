@@ -1,0 +1,43 @@
+# Mi paleta de colores
+
+## Tema claro
+
+- Fondo principal: `#f7f7f8`
+  Utilicé este color para mantener una interfaz limpia y suave visualmente. Ayuda a que las tarjetas y formularios resalten más fácilmente.
+
+- Superficie: `#ffffff`
+  Se utilizó blanco para las tarjetas principales y formularios para mejorar la separación visual entre secciones.
+
+- Texto principal: `#1a1a1a`
+  Elegí un tono oscuro para mejorar la lectura y mantener buen contraste sobre fondos claros.
+
+- Color de acento: `#4f46e5`
+  Este morado se usa para botones activos y acciones importantes porque resalta bien visualmente sin ser demasiado fuerte.
+
+- Bordes: `#e5e7eb`
+  Se usó un gris claro para separar componentes de forma sutil sin recargar la interfaz.
+
+- Estado éxito: `#166534`
+  Este verde representa sesiones completadas y transmite una sensación positiva y clara visualmente.
+
+---
+
+## Tema oscuro
+
+- Fondo principal: `#0f172a`
+  Elegí este azul oscuro porque reduce el cansancio visual y da una apariencia moderna tipo dashboard.
+
+- Superficie: `#1e293b`
+  Se utiliza para tarjetas y contenedores para generar contraste sin usar negro puro.
+
+- Texto principal: `#f1f5f9`
+  Este color mejora la legibilidad sobre fondos oscuros y mantiene un contraste cómodo.
+
+- Color de acento: `#818cf8`
+  Se usa para botones activos y elementos importantes porque combina bien con la estética oscura.
+
+- Bordes: `#334155`
+  Ayuda a separar secciones de manera discreta manteniendo coherencia visual.
+
+- Estado éxito: `#16a34a`
+  Representa sesiones completadas usando un verde más brillante que destaca mejor en modo oscuro.
