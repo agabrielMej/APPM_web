@@ -11,7 +11,7 @@ function Topbar({
   return (
     <nav className="topbar">
       <div className="logo">
-        <h2>GymLog</h2>
+        <h2>GYM</h2>
       </div>
 
       <div className="view-buttons">
