@@ -1,7 +1,7 @@
 import {
   useContext,
-  useEffect,
-  useState,
+  useMemo,
+  useState
 } from "react";
 
 import Topbar from "./components/Topbar";

@@ -2,8 +2,14 @@ import {
   createContext,
   useCallback,
   useEffect,
+  useReducer,
   useState,
 } from "react";
+
+import {
+  itemsReducer,
+  estadoInicial,
+} from "../reducers/itemsReducer";
 
 export const StorageContext =
   createContext();
@@ -20,8 +26,11 @@ export function StorageProvider({
       );
     });
 
-  const [items, setItems] =
-    useState([]);
+  const [estado, dispatch] =
+    useReducer(
+      itemsReducer,
+      estadoInicial
+    );
 
   const [cargando, setCargando] =
     useState(false);
@@ -56,7 +65,11 @@ export function StorageProvider({
           const data =
             await res.json();
 
-          setItems(data);
+          dispatch({
+            type: "HIDRATAR",
+
+            payload: data,
+          });
 
           return data;
         } else {
@@ -69,7 +82,11 @@ export function StorageProvider({
             ? JSON.parse(data)
             : [];
 
-          setItems(parsed);
+          dispatch({
+            type: "HIDRATAR",
+
+            payload: parsed,
+          });
 
           return parsed;
         }
@@ -105,12 +122,16 @@ export function StorageProvider({
 
         await obtenerItems();
       } else {
+        dispatch({
+          type: "AGREGAR",
+
+          payload: item,
+        });
+
         const nuevosItems = [
-          ...items,
+          ...estado.lista,
           item,
         ];
-
-        setItems(nuevosItems);
 
         localStorage.setItem(
           "items",
@@ -138,13 +159,23 @@ export function StorageProvider({
 
         await obtenerItems();
       } else {
-        const nuevosItems =
-          items.filter(
-            (item) =>
-              item.id !== id
-          );
+        dispatch({
+          type: "ELIMINAR",
 
-        setItems(nuevosItems);
+          payload: id,
+        });
+
+        const nuevosItems =
+          estado.lista.map(
+            (item) =>
+              item.id === id
+                ? {
+                    ...item,
+
+                    activo: false,
+                  }
+                : item
+          );
 
         localStorage.setItem(
           "items",
@@ -182,21 +213,29 @@ export function StorageProvider({
 
         await obtenerItems();
       } else {
+        dispatch({
+          type:
+            "CAMBIAR_ESTADO",
+
+          payload: {
+            id,
+
+            estado:
+              nuevosDatos.estado,
+          },
+        });
+
         const nuevosItems =
-          items.map((item) => {
-            if (
+          estado.lista.map(
+            (item) =>
               item.id === id
-            ) {
-              return {
-                ...item,
-                ...nuevosDatos,
-              };
-            }
+                ? {
+                    ...item,
 
-            return item;
-          });
-
-        setItems(nuevosItems);
+                    ...nuevosDatos,
+                  }
+                : item
+          );
 
         localStorage.setItem(
           "items",
@@ -220,10 +259,18 @@ export function StorageProvider({
         modo,
         setModo,
 
-        items,
+        estado,
+
+        items:
+          estado.lista.filter(
+            (item) =>
+              item.activo
+          ),
 
         cargando,
         error,
+
+        dispatch,
 
         obtenerItems,
         guardarItem,
