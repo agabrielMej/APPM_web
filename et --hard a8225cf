@@ -1,0 +1,54 @@
+[33ma8225cf[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m)[m se comienza la fase 3 agregando el usememo
+[33m0192596[m[33m ([m[1;31morigin/main[m[33m)[m se modifico el link del video
+[33mf9ba35e[m se agregan las fotos y documentacion ademas de cambiarle el nombre a la vista general de la topbar
+[33m7135594[m se agrega cambio en los atajos para que al escribir de forma normal la T no afecte y como mi navegador crea una pagina incognito al usar el atajo de ctrl+n lo cambie a alt+n
+[33m507a1e6[m se cambia los botones de editar
+[33mf8aef65[m se agregan cambios, en la visibilidad y se cambia de lugar una carpeta, ademas de cambios de funcionamiento
+[33ma5a3431[m refactorizar y context api con tema claro oscuro
+[33m3ec1254[m se agrega las conexiones del frontend con el backend
+[33m289d03c[m se agrega el readme con fotos
+[33m768603b[m se agrega la base de base de datos
+[33m7796b61[m se arregla un error de guardado en el boton de editar
+[33m14477a2[m se modifican la funcionalidades de los botones
+[33m4691398[m se agrega funcionalidades a los botones
+[33m5f0306c[m se cambia gran parte de los componentes y temas
+[33mb660267[m se agrega la parte de components y parte del styles
+[33m987af0b[m se agrega la base del proyecto
+[33m1a38a58[m se cambia el readme para tener el link del video y una pestaña con solo el link del video
+[33m49ce378[m se agrega el nivel 3
+[33m7d6d073[m se sube el nivel 2
+[33mececc7c[m se agregan carpetas faltantes junto a sus codigos
+[33m2f21dc7[m se elimina y se crea bien el proyecto
+[33md93f739[m se agregan los documentos del react hooks
+[33m5da96ed[m se agrega el video de youtube (se me habia olvidado darle commit perdon)
+[33mfd489e3[m se pone la paginacion actual como era en el principio
+[33mec147e1[m se hacen arreglos con el boton de favoritos que al parecer no se podia eliminar de ahi
+[33me98fdc6[m se cambia la foto de nuevo
+[33m9325a5d[m se cambio una imagen que habian eliminado de google no se porque
+[33m66a20ca[m se agrega proyecto_1 correctamente
+[33mfacf14a[m se aplica bien el gitignore
+[33m6a006c3[m se agrega un cambio en una llamada de router
+[33mf454b35[m se arreglaron errores de la pagina en general
+[33mf524c5d[m se agrega el cambio de pagina
+[33m261813e[m se agrega la informacion de todos los pilotos
+[33m82aaf60[m se agrega mucha informacion en este commit porque se me olvido hacer commit antes, se sube y arregla problemas con el boton de favoritos, se agrega el inicio de un boton de info donde se puea ver informacion de los pilotos de formula 1
+[33m09f49f9[m se agrega el boton de favoritos
+[33m733e137[m se agregan botones para eliminar y editar posts
+[33mc84b24b[m se hacen arreglos en el post de agregar posts
+[33me7aff43[m se agrega el boton de crear post junto a su funcionamiento
+[33m580c1cb[m se agrega la funcion del boton de inicio para regresar al inicio
+[33mace1fa0[m se agregala conexion con del rauter para ver mas informacion
+[33mda90131[m se cambia el diseño del index principal
+[33mea2570d[m se agregan cambios para el blod en la parte de la api e informacion visible
+[33m8e5108a[m se agrega la base del proyecto junto a su primer index y su diseño, este commit tiene tanta informacion porque me equivoque y estaba subiendo los cambios desde dentro del proyecto y no se gusardaban bien
+[33m9347f8f[m se agrega el index inicial y sus componentes bases de css y js
+[33mcb5289d[m base del proyecto
+[33mf60fec0[m se agrega el ejercicio js fetch
+[33me41935a[m se agrega el link del git hub en la entrada general de las carpetas
+[33m9b89dc0[m se arregla un error al minimizar pantalla
+[33m3a87177[m se agrega el link para el lab 3
+[33m3d77eb5[m se agregan cambios en los avances y se da vida a la carpeta labo 3 que no se habia creado
+[33md5b0586[m se agrega el el utf 8 porque no lo tenia puesto
+[33mc5e04ee[m se agrega el css para todas las vistas asi solo faltando imgs en las vistas
+[33m820df5e[m se cambia el readme a ingles y se arregla
+[33maac6695[m se agrega el utf 8 para tener tildes y ñ en el codigo
