@@ -10,6 +10,7 @@ import StatsCards from "./components/StatsCards";
 import Timeline from "./components/Timeline";
 import CalendarView from "./components/CalendarView";
 import FormularioItem from "./components/FormularioItem";
+import ChartsDashboard from "./components/ChartsDashboard";
 
 import {
   StorageContext,
@@ -136,6 +137,10 @@ function App() {
         addItem={
           guardarItem
         }
+      />
+
+      <ChartsDashboard
+         items={itemsFiltrados}
       />
 
       {view ===
