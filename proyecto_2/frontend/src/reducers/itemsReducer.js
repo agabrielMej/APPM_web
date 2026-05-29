@@ -26,7 +26,6 @@ export function itemsReducer(
 
         lista: [
           ...estado.lista,
-
           accion.payload,
         ],
       };
@@ -41,7 +40,6 @@ export function itemsReducer(
             accion.payload
               ? {
                   ...item,
-
                   activo: false,
                 }
               : item
@@ -71,7 +69,9 @@ export function itemsReducer(
       return {
         ...estado,
 
-        [accion.payload.campo]:
+        [
+          accion.payload.campo
+        ]:
           accion.payload.valor,
       };
 

@@ -1,42 +1,53 @@
 import { CATEGORIAS } from "../utils/categorias";
 
 function Filters({
-  filtro,
-  setFiltro,
+  estado,
+  dispatch,
 }) {
   return (
     <div className="filters-container">
       <div className="filters">
         <button
           className={
-            filtro === "todos"
+            estado.filtroCategoria ===
+            "todas"
               ? "active-view"
               : ""
           }
-
           onClick={() =>
-            setFiltro("todos")
+            dispatch({
+              type: "FILTRAR",
+              payload: {
+                campo:
+                  "filtroCategoria",
+                valor: "todas",
+              },
+            })
           }
         >
-          Todos
+          Todas
         </button>
 
         {CATEGORIAS.map(
           (categoria) => (
             <button
               key={categoria.id}
-
               className={
-                filtro ===
+                estado.filtroCategoria ===
                 categoria.id
                   ? "active-view"
                   : ""
               }
-
               onClick={() =>
-                setFiltro(
-                  categoria.id
-                )
+                dispatch({
+                  type: "FILTRAR",
+                  payload: {
+                    campo:
+                      "filtroCategoria",
+                    valor:
+                      categoria.id,
+                  },
+                })
               }
             >
               {categoria.nombre}
@@ -45,11 +56,69 @@ function Filters({
         )}
       </div>
 
-      <input
-        type="text"
-        placeholder="Buscar sesiones..."
-        className="search-input"
-      />
+      <div className="filters">
+        <select
+          value={
+            estado.filtroEstado
+          }
+          onChange={(e) =>
+            dispatch({
+              type: "FILTRAR",
+              payload: {
+                campo:
+                  "filtroEstado",
+                valor:
+                  e.target.value,
+              },
+            })
+          }
+        >
+          <option value="todos">
+            Todos los estados
+          </option>
+
+          <option value="pendiente">
+            Pendiente
+          </option>
+
+          <option value="completado">
+            Completado
+          </option>
+
+          <option value="incompleto">
+            Incompleto
+          </option>
+        </select>
+
+        <input
+          type="text"
+          placeholder="Buscar sesiones..."
+          className="search-input"
+          value={estado.busqueda}
+          onChange={(e) =>
+            dispatch({
+              type: "FILTRAR",
+              payload: {
+                campo:
+                  "busqueda",
+                valor:
+                  e.target.value,
+              },
+            })
+          }
+        />
+
+        <button
+          onClick={() =>
+            dispatch({
+              type:
+                "LIMPIAR_FILTROS",
+            })
+          }
+        >
+          Limpiar filtros
+        </button>
+      </div>
     </div>
   );
 }

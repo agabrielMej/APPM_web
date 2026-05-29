@@ -1,7 +1,7 @@
 import {
   useContext,
   useMemo,
-  useState
+  useState,
 } from "react";
 
 import Topbar from "./components/Topbar";
@@ -23,13 +23,10 @@ function App() {
   const [view, setView] =
     useState("timeline");
 
-  const [filtro, setFiltro] =
-    useState("todos");
-
   const {
     tema,
     toggleTema,
-    } = useContext(
+  } = useContext(
     ThemeContext
   );
 
@@ -37,7 +34,11 @@ function App() {
     modo,
     setModo,
 
+    estado,
+
     items,
+
+    dispatch,
 
     guardarItem,
 
@@ -47,40 +48,103 @@ function App() {
   );
 
   const itemsFiltrados =
-    filtro === "todos"
-      ? items
-      : items.filter(
+    useMemo(() => {
+      let resultado =
+        items.filter(
           (item) =>
-            item.categoriaId === filtro
+            item.activo
         );
+
+      if (
+        estado.filtroCategoria !==
+        "todas"
+      ) {
+        resultado =
+          resultado.filter(
+            (item) =>
+              item.categoriaId ===
+              estado.filtroCategoria
+          );
+      }
+
+      if (
+        estado.filtroEstado !==
+        "todos"
+      ) {
+        resultado =
+          resultado.filter(
+            (item) =>
+              item.estado ===
+              estado.filtroEstado
+          );
+      }
+
+      if (
+        estado.busqueda
+      ) {
+        resultado =
+          resultado.filter(
+            (item) =>
+              item.nombre
+                .toLowerCase()
+                .includes(
+                  estado.busqueda.toLowerCase()
+                )
+          );
+      }
+
+      return resultado;
+    }, [
+      items,
+
+      estado.filtroCategoria,
+
+      estado.filtroEstado,
+
+      estado.busqueda,
+    ]);
 
   return (
     <div className="app">
       <Topbar
         view={view}
         setView={setView}
+
         modo={modo}
         setModo={setModo}
+
         tema={tema}
-        toggleTema={toggleTema}
+        toggleTema={
+          toggleTema
+        }
       />
 
       <Filters
-        filtro={filtro}
-        setFiltro={setFiltro}
+        estado={estado}
+        dispatch={
+          dispatch
+        }
       />
 
       <StatsCards
-        items={items}
+        items={
+          itemsFiltrados
+        }
       />
 
       <FormularioItem
-        addItem={guardarItem}
+        addItem={
+          guardarItem
+        }
       />
 
-      {view === "timeline" ? (
+      {view ===
+      "timeline" ? (
         <Timeline
-          items={itemsFiltrados}
+          items={
+            itemsFiltrados
+          }
+
           eliminarItem={
             eliminarItem
           }

@@ -62,34 +62,38 @@ export function StorageProvider({
             `${API_URL}/api/items`
           );
 
+          if (!res.ok) {
+            throw new Error(
+              `HTTP ${res.status}`
+            );
+          }
+
           const data =
             await res.json();
 
           dispatch({
             type: "HIDRATAR",
-
             payload: data,
           });
 
           return data;
-        } else {
-          const data =
-            localStorage.getItem(
-              "items"
-            );
-
-          const parsed = data
-            ? JSON.parse(data)
-            : [];
-
-          dispatch({
-            type: "HIDRATAR",
-
-            payload: parsed,
-          });
-
-          return parsed;
         }
+
+        const data =
+          localStorage.getItem(
+            "items"
+          );
+
+        const parsed = data
+          ? JSON.parse(data)
+          : [];
+
+        dispatch({
+          type: "HIDRATAR",
+          payload: parsed,
+        });
+
+        return parsed;
       } catch (err) {
         setError(err.message);
 
@@ -121,25 +125,26 @@ export function StorageProvider({
         );
 
         await obtenerItems();
-      } else {
-        dispatch({
-          type: "AGREGAR",
 
-          payload: item,
-        });
-
-        const nuevosItems = [
-          ...estado.lista,
-          item,
-        ];
-
-        localStorage.setItem(
-          "items",
-          JSON.stringify(
-            nuevosItems
-          )
-        );
+        return;
       }
+
+      const nuevosItems = [
+        ...estado.lista,
+        item,
+      ];
+
+      localStorage.setItem(
+        "items",
+        JSON.stringify(
+          nuevosItems
+        )
+      );
+
+      dispatch({
+        type: "AGREGAR",
+        payload: item,
+      });
     } catch (err) {
       setError(err.message);
     }
@@ -158,32 +163,32 @@ export function StorageProvider({
         );
 
         await obtenerItems();
-      } else {
-        dispatch({
-          type: "ELIMINAR",
 
-          payload: id,
-        });
-
-        const nuevosItems =
-          estado.lista.map(
-            (item) =>
-              item.id === id
-                ? {
-                    ...item,
-
-                    activo: false,
-                  }
-                : item
-          );
-
-        localStorage.setItem(
-          "items",
-          JSON.stringify(
-            nuevosItems
-          )
-        );
+        return;
       }
+
+      const nuevosItems =
+        estado.lista.map(
+          (item) =>
+            item.id === id
+              ? {
+                  ...item,
+                  activo: false,
+                }
+              : item
+        );
+
+      localStorage.setItem(
+        "items",
+        JSON.stringify(
+          nuevosItems
+        )
+      );
+
+      dispatch({
+        type: "ELIMINAR",
+        payload: id,
+      });
     } catch (err) {
       setError(err.message);
     }
@@ -212,38 +217,38 @@ export function StorageProvider({
         );
 
         await obtenerItems();
-      } else {
-        dispatch({
-          type:
-            "CAMBIAR_ESTADO",
 
-          payload: {
-            id,
-
-            estado:
-              nuevosDatos.estado,
-          },
-        });
-
-        const nuevosItems =
-          estado.lista.map(
-            (item) =>
-              item.id === id
-                ? {
-                    ...item,
-
-                    ...nuevosDatos,
-                  }
-                : item
-          );
-
-        localStorage.setItem(
-          "items",
-          JSON.stringify(
-            nuevosItems
-          )
-        );
+        return;
       }
+
+      const nuevosItems =
+        estado.lista.map(
+          (item) =>
+            item.id === id
+              ? {
+                  ...item,
+                  ...nuevosDatos,
+                }
+              : item
+        );
+
+      localStorage.setItem(
+        "items",
+        JSON.stringify(
+          nuevosItems
+        )
+      );
+
+      dispatch({
+        type:
+          "CAMBIAR_ESTADO",
+
+        payload: {
+          id,
+          estado:
+            nuevosDatos.estado,
+        },
+      });
     } catch (err) {
       setError(err.message);
     }
@@ -251,7 +256,7 @@ export function StorageProvider({
 
   useEffect(() => {
     obtenerItems();
-  }, [modo]);
+  }, [obtenerItems]);
 
   return (
     <StorageContext.Provider
