@@ -128,19 +128,21 @@ function App() {
         items={itemsFiltrados}
       />
 
-      <FormularioItem
-        addItem={guardarItem}
-      />
-
-      <ChartsDashboard
-        items={itemsFiltrados}
-      />
-
       {view === "timeline" ? (
-        <Timeline
-          items={itemsFiltrados}
-          eliminarItem={eliminarItem}
-        />
+        <>
+          <FormularioItem
+            addItem={guardarItem}
+          />
+
+          <ChartsDashboard
+            items={itemsFiltrados}
+          />
+
+          <Timeline
+            items={itemsFiltrados}
+            eliminarItem={eliminarItem}
+          />
+        </>
       ) : (
         <>
           <CalendarView

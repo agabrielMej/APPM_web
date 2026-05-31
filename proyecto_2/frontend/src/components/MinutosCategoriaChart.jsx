@@ -58,7 +58,7 @@ function MinutosCategoriaChart({
 
       <ResponsiveContainer
         width="100%"
-        height={300}
+        height={250}
       >
         <BarChart data={datos}>
           <XAxis
