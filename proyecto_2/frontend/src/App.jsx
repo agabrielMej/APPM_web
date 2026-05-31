@@ -11,6 +11,7 @@ import Timeline from "./components/Timeline";
 import CalendarView from "./components/CalendarView";
 import FormularioItem from "./components/FormularioItem";
 import ChartsDashboard from "./components/ChartsDashboard";
+import DetalleDia from "./components/DetalleDia";
 
 import {
   StorageContext,
@@ -23,6 +24,11 @@ import {
 function App() {
   const [view, setView] =
     useState("timeline");
+
+  const [
+    fechaSeleccionada,
+    setFechaSeleccionada,
+  ] = useState(null);
 
   const {
     tema,
@@ -97,11 +103,8 @@ function App() {
       return resultado;
     }, [
       items,
-
       estado.filtroCategoria,
-
       estado.filtroEstado,
-
       estado.busqueda,
     ]);
 
@@ -110,54 +113,52 @@ function App() {
       <Topbar
         view={view}
         setView={setView}
-
         modo={modo}
         setModo={setModo}
-
         tema={tema}
-        toggleTema={
-          toggleTema
-        }
+        toggleTema={toggleTema}
       />
 
       <Filters
         estado={estado}
-        dispatch={
-          dispatch
-        }
+        dispatch={dispatch}
       />
 
       <StatsCards
-        items={
-          itemsFiltrados
-        }
+        items={itemsFiltrados}
       />
 
       <FormularioItem
-        addItem={
-          guardarItem
-        }
+        addItem={guardarItem}
       />
 
       <ChartsDashboard
-         items={itemsFiltrados}
+        items={itemsFiltrados}
       />
 
-      {view ===
-      "timeline" ? (
+      {view === "timeline" ? (
         <Timeline
-          items={
-            itemsFiltrados
-          }
-
-          eliminarItem={
-            eliminarItem
-          }
+          items={itemsFiltrados}
+          eliminarItem={eliminarItem}
         />
       ) : (
-        <CalendarView
-          items={items}
-        />
+        <>
+          <CalendarView
+            items={items}
+            setFechaSeleccionada={
+              setFechaSeleccionada
+            }
+          />
+
+          {fechaSeleccionada && (
+            <DetalleDia
+              fecha={
+                fechaSeleccionada
+              }
+              items={items}
+            />
+          )}
+        </>
       )}
     </div>
   );

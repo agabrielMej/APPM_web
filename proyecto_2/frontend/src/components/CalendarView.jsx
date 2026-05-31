@@ -1,9 +1,13 @@
-function CalendarView({ items }) {
+function CalendarView({
+  items,
+  setFechaSeleccionada,
+}) {
   const dias = [
     ...new Set(
       items.map((item) =>
-        item.fechaRegistro
-          .split("T")[0]
+        item.fechaRegistro.split(
+          "T"
+        )[0]
       )
     ),
   ];
@@ -15,6 +19,11 @@ function CalendarView({ items }) {
           <div
             key={dia}
             className="calendar-day active-day"
+            onClick={() =>
+              setFechaSeleccionada(
+                dia
+              )
+            }
           >
             {dia}
           </div>

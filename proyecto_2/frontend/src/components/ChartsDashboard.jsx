@@ -1,10 +1,24 @@
-import { BarChart } from "recharts";
+import ActividadChart from "./ActividadChart";
+import CategoriasChart from "./CategoriasChart";
+import MinutosCategoriaChart from "./MinutosCategoriaChart";
 
-function ChartsDashboard() {
+function ChartsDashboard({
+  items,
+}) {
   return (
-    <div>
-      Dashboard funcionando
-    </div>
+    <section className="charts-dashboard">
+      <ActividadChart
+        items={items}
+      />
+
+      <CategoriasChart
+        items={items}
+      />
+
+      <MinutosCategoriaChart
+        items={items}
+      />
+    </section>
   );
 }
 
