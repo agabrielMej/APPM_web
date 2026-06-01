@@ -391,3 +391,21 @@ body {
   height: 420px;
   overflow: hidden;
 }
+
+.backend-status {
+  margin: 15px 0;
+
+  padding: 12px;
+
+  border-radius: 12px;
+
+  font-weight: bold;
+}
+
+.backend-status.ok {
+  background: #166534;
+}
+
+.backend-status.error {
+  background: #991b1b;
+}

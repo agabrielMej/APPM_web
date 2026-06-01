@@ -12,6 +12,7 @@ import CalendarView from "./components/CalendarView";
 import FormularioItem from "./components/FormularioItem";
 import ChartsDashboard from "./components/ChartsDashboard";
 import DetalleDia from "./components/DetalleDia";
+import BackendStatus from "./components/BackendStatus";
 
 import {
   StorageContext,
@@ -40,15 +41,10 @@ function App() {
   const {
     modo,
     setModo,
-
     estado,
-
     items,
-
     dispatch,
-
     guardarItem,
-
     eliminarItem,
   } = useContext(
     StorageContext

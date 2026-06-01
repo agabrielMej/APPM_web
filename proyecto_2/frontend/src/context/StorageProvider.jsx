@@ -11,20 +11,21 @@ import {
   estadoInicial,
 } from "../reducers/itemsReducer";
 
+import {
+  useLocalStorage,
+} from "../hooks/useLocalStorage";
+
 export const StorageContext =
   createContext();
 
 export function StorageProvider({
   children,
 }) {
-  const [modo, setModoState] =
-    useState(() => {
-      return (
-        localStorage.getItem(
-          "modo"
-        ) || "local"
-      );
-    });
+  const [modo, setModo] =
+    useLocalStorage(
+      "modo",
+      "local"
+    );
 
   const [estado, dispatch] =
     useReducer(
@@ -41,14 +42,6 @@ export function StorageProvider({
   const API_URL =
     "http://localhost:3001";
 
-  const setModo = (nuevoModo) => {
-    setModoState(nuevoModo);
-
-    localStorage.setItem(
-      "modo",
-      nuevoModo
-    );
-  };
 
   const obtenerItems =
     useCallback(async () => {

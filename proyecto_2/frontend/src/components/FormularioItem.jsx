@@ -1,6 +1,5 @@
 import {
   useContext,
-  useEffect,
   useRef,
   useState,
 } from "react";
@@ -9,11 +8,17 @@ import {
   ThemeContext,
 } from "../context/ThemeProvider";
 
+import {
+  useAtajoTeclado,
+} from "../hooks/useAtajoTeclado";
+
 function FormularioItem({
   addItem,
 }) {
   const { toggleTema } =
-    useContext(ThemeContext);
+    useContext(
+      ThemeContext
+    );
 
   const [nombre, setNombre] =
     useState("");
@@ -54,49 +59,20 @@ function FormularioItem({
   const inputRef =
     useRef(null);
 
-  const intervalRef =
-    useRef(null);
+  useAtajoTeclado(
+    "n",
+    () => {
+      inputRef.current?.focus();
+    },
+    { ctrl: true }
+  );
 
-  useEffect(() => {
-    const handler = (e) => {
-      const tag =
-        document.activeElement.tagName;
-
-      const escribiendo =
-        tag === "INPUT" ||
-        tag === "TEXTAREA" ||
-        tag === "SELECT";
-
-      if (
-        e.altKey &&
-        e.key.toLowerCase() === "n"
-      ) {
-        e.preventDefault();
-        e.stopPropagation();
-        inputRef.current.focus();
-        return;
-      }
-
-      if (
-        !escribiendo &&
-        e.key.toLowerCase() === "t"
-      ) {
-        toggleTema();
-      }
-    };
-
-    window.addEventListener(
-      "keydown",
-      handler
-    );
-
-    return () => {
-      window.removeEventListener(
-        "keydown",
-        handler
-      );
-    };
-  }, [toggleTema]);
+  useAtajoTeclado(
+    "t",
+    () => {
+      toggleTema();
+    }
+  );
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -157,7 +133,7 @@ function FormularioItem({
 
     setEjercicios("");
 
-    inputRef.current.focus();
+    inputRef.current?.focus();
   };
 
   return (
